@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c0ubycllm8rts"]
+
+[ext_resource type="Script" uid="uid://h21n48digmln" path="res://Levels/death_zone.gd" id="1_yy22o"]
+
+[node name="Death_Zone" type="Area3D" unique_id=1968610156]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_yy22o")

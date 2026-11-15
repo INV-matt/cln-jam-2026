@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://b66ejd2032ibg"]
+
+[node name="LevelContainer" type="Node3D" unique_id=1722792067]
+
+[node name="Base" type="CSGCombiner3D" parent="." unique_id=1388327467]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Base" unique_id=991623667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, 0)
+flip_faces = true
+size = Vector3(15, 4, 2)
+
+[node name="DirectionalLight3D2" type="OmniLight3D" parent="Base/CSGBox3D" unique_id=1993510184]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7, 1.5, 0)
+light_color = Color(0.8901961, 0.8745098, 0.8235294, 1)
+light_energy = 5.0
+
+[node name="DirectionalLight3D3" type="OmniLight3D" parent="Base/CSGBox3D" unique_id=244943366]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6, 1.5, 0)
+visible = false
+light_color = Color(0.8901961, 0.8745098, 0.8235294, 1)
+light_energy = 5.0
+
+[node name="DirectionalLight3D4" type="OmniLight3D" parent="Base/CSGBox3D" unique_id=882139369]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.5, 0)
+visible = false
+light_color = Color(0.8901961, 0.8745098, 0.8235294, 1)
+light_energy = 5.0
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Base" unique_id=1612188041]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 13.5, 2, 3)
+flip_faces = true
+size = Vector3(8, 4, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Base" unique_id=1912443635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 3, 14)
+flip_faces = true
+size = Vector3(20, 8, 20)
+
+[node name="DirectionalLight3D2" type="OmniLight3D" parent="Base/CSGBox3D2" unique_id=996611898]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.5, 0)
+light_color = Color(0.8901961, 0.8745098, 0.8235294, 1)
+light_energy = 5.0
+omni_range = 15.0
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Base" unique_id=509900618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5, 6.5, 14)
+flip_faces = true
+size = Vector3(20, 8, 20)
+
+[node name="DirectionalLight3D" type="OmniLight3D" parent="Base/CSGBox3D3" unique_id=2120318128]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.5, 0)
+light_energy = 5.0
+omni_range = 15.0
+
+[node name="Platforms" type="CSGCombiner3D" parent="." unique_id=1845881798]
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Platforms" unique_id=289352012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -0.5, 14)
+use_collision = true
+size = Vector3(3, 1, 10)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Platforms" unique_id=1617065892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 14)
+use_collision = true
+size = Vector3(3, 2, 10)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Platforms" unique_id=641488693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 4.5)
+size = Vector3(1, 8, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Platforms" unique_id=1028410508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 23.5)
+size = Vector3(1, 8, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Platforms" unique_id=1129719698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 18.5)
+size = Vector3(1, 8, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Platforms" unique_id=112192980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 9.5)
+size = Vector3(1, 8, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Platforms" unique_id=1031628200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 3, 18.5)
+size = Vector3(1, 8, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Platforms" unique_id=1179852373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 3, 9.5)
+size = Vector3(1, 8, 1)

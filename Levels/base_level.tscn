@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://k42cotr7blw7"]
+
+[ext_resource type="Script" uid="uid://6ngq1sv3vxxi" path="res://Levels/base_level.gd" id="1_ujkqx"]
+[ext_resource type="PackedScene" uid="uid://twhx8ljvwr02" path="res://Weapons/player_weapon.tscn" id="2_j3xrb"]
+[ext_resource type="PackedScene" uid="uid://r0ptg6eyddfk" path="res://Levels/end_level_zone.tscn" id="3_n4mxg"]
+[ext_resource type="Environment" uid="uid://cidvu8afblr6g" path="res://Common/Default_Env.tres" id="4_ruyyf"]
+
+[node name="BaseLevel" type="Node3D" unique_id=565035297 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
+process_mode = 1
+script = ExtResource("1_ujkqx")
+PlayerSpawnPosition = NodePath("PlayerSpawnPoint")
+EndLevelZone = NodePath("EndLevelZone")
+Deadline = 10
+playerGun = ExtResource("2_j3xrb")
+InitialMags = 2
+
+[node name="PlayerSpawnPoint" type="Marker3D" parent="." unique_id=992644609]
+unique_name_in_owner = true
+
+[node name="EnemyContainer" type="Node3D" parent="." unique_id=2109253794]
+unique_name_in_owner = true
+
+[node name="EndLevelZone" parent="." unique_id=96569969 instance=ExtResource("3_n4mxg")]
+unique_name_in_owner = true
+
+[node name="LevelContainer" type="Node3D" parent="." unique_id=2008401292]
+unique_name_in_owner = true
+
+[node name="Env" type="WorldEnvironment" parent="." unique_id=654554399]
+environment = ExtResource("4_ruyyf")

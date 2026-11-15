@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dk4po5i5ohxtv"]
+
+[ext_resource type="Script" uid="uid://doin3x8odmcwg" path="res://Player/player.gd" id="1_l8h54"]
+[ext_resource type="PackedScene" uid="uid://ct71bl052ct3a" path="res://Weapons/player_knife.tscn" id="2_btcbx"]
+[ext_resource type="Texture2D" uid="uid://cfghur0m5tgl6" path="res://HUD/crosshair.svg" id="4_k53q1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i2tgm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i2tgm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i2tgm"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1075427188 node_paths=PackedStringArray("KNIFE")]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_l8h54")
+WALK_SPEED = 8.0
+GUN_POSITION = Vector3(0.082, -0.206, -0.176)
+GUN_ROTATION = Vector3(0, 180, 0)
+GUN_SCALE = Vector3(0.1, 0.1, 0.1)
+KNIFE_POSITION = Vector3(0.3, -0.258, -0.673)
+KNIFE_SCALE = Vector3(0.3, 0.3, 0.3)
+KNIFE = NodePath("Head/PlayerCamera/PlayerKnife")
+
+[node name="SPEED" type="Label" parent="." unique_id=1006019177]
+unique_name_in_owner = true
+visible = false
+offset_right = 57.0
+offset_bottom = 23.0
+text = "SPEED: "
+
+[node name="MAG" type="Label" parent="." unique_id=2103754697]
+unique_name_in_owner = true
+visible = false
+offset_top = 23.0
+offset_right = 57.0
+offset_bottom = 46.0
+text = "MAG: 6/6"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2068867647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_i2tgm")
+
+[node name="WorldModel" type="Node3D" parent="." unique_id=509669986]
+unique_name_in_owner = true
+visible = false
+
+[node name="Body" type="MeshInstance3D" parent="WorldModel" unique_id=404191642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_i2tgm")
+
+[node name="Eyes" type="MeshInstance3D" parent="WorldModel" unique_id=814435161]
+transform = Transform3D(0.7, 0, 0, 0, 0.39999998, 0, 0, 0, 0.3, 0, 1.7, -0.4)
+mesh = SubResource("BoxMesh_i2tgm")
+
+[node name="Head" type="Node3D" parent="." unique_id=894637514]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="PlayerCamera" type="Camera3D" parent="Head" unique_id=1192047626]
+unique_name_in_owner = true
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0)
+cull_mask = 1048573
+current = true
+
+[node name="WeaponRC" type="RayCast3D" parent="Head/PlayerCamera" unique_id=1876357329]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -500)
+collision_mask = 7
+
+[node name="PlayerKnife" parent="Head/PlayerCamera" unique_id=11578925 instance=ExtResource("2_btcbx")]
+unique_name_in_owner = true
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.3, -0.258, -0.673)
+
+[node name="FrontLight" type="SpotLight3D" parent="Head" unique_id=1521332791]
+visible = false
+spot_range = 10.0
+spot_attenuation = 2.0
+spot_angle = 60.0
+
+[node name="Crosshair" type="Control" parent="." unique_id=1889355703]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Crosshair" unique_id=560207795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Crosshair/CenterContainer" unique_id=2086726643]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("4_k53q1")
+expand_mode = 2
+stretch_mode = 5

@@ -1,0 +1,40 @@
+extends CanvasLayer
+class_name HUD
+
+@onready var lbl_Bullets: Label = %Bullets
+@onready var lbl_Time: RichTextLabel = %Time
+@onready var lbl_Enemies: Label = %Enemies
+
+func _ready() -> void:
+  Signals.bullets_changed.connect(setBullets)
+
+
+func setTime(value: float) -> void:
+  var col = "green" if value > 0 else "red"
+  value = abs(value)
+  var sec: int = floor(value)
+  var ms: float = (value - sec) * 1000
+  lbl_Time.text = "[color=%s]%2d:%03d[/color]" % [col, sec, ms] # A QUANTO PARE IL MENO È UNA FUCKING CIFRA
+
+
+func showTime(value: bool) -> void:
+  if value: lbl_Time.show()
+  else: lbl_Time.hide()
+
+func setEnemies(value: int) -> void:
+  if value <= 0: lbl_Enemies.hide()
+  else: lbl_Enemies.show()
+
+  lbl_Enemies.text = "ENEMIES: %d" % value
+
+func showEnemies(value: bool) -> void:
+  if value: lbl_Enemies.show()
+  else: lbl_Enemies.hide()
+
+func setBullets(value: int) -> void:
+  lbl_Bullets.text = "BULLETS: %d" % value
+
+
+func showBullets(value: bool) -> void:
+  if value: lbl_Bullets.show()
+  else: lbl_Bullets.hide()

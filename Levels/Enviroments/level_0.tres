@@ -1,0 +1,9 @@
+[gd_resource type="Environment" format=3 uid="uid://tvsjat3mkvg2"]
+
+[resource]
+background_mode = 1
+background_color = Color(0.70628667, 0.8281171, 0.8401412, 1)
+ssao_enabled = true
+ssao_radius = 0.5
+ssao_power = 1.0
+fog_enabled = true

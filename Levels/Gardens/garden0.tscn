@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://cxxhwsa2ltos"]
+
+[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="1_k5whs"]
+[ext_resource type="PackedScene" uid="uid://xu6ynmpfl5so" path="res://Enemy/enemy.tscn" id="2_k5whs"]
+[ext_resource type="PackedScene" path="res://Enemy/shooting_enemy.scn" id="3_0meq5"]
+[ext_resource type="PackedScene" uid="uid://dk4po5i5ohxtv" path="res://Player/player.tscn" id="3_7rttc"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i2tgm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5whs"]
+render_priority = 0
+shader = ExtResource("1_k5whs")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i2tgm"]
+material = SubResource("ShaderMaterial_k5whs")
+size = Vector2(40, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i2tgm"]
+size = Vector3(3, 4, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_k5whs"]
+size = Vector3(4, 8, 20)
+
+[sub_resource type="PrismMesh" id="PrismMesh_0meq5"]
+size = Vector3(16, 4, 5)
+
+[node name="TestLevel" type="Node3D" unique_id=1839972316]
+
+[node name="World" type="Node" parent="." unique_id=2131791935]
+
+[node name="BasePlane" type="StaticBody3D" parent="World" unique_id=1312112878]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/BasePlane" unique_id=894357700]
+shape = SubResource("WorldBoundaryShape3D_i2tgm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/BasePlane" unique_id=1564980630]
+mesh = SubResource("PlaneMesh_i2tgm")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="World" unique_id=564816393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9)
+use_collision = true
+mesh = SubResource("BoxMesh_i2tgm")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="World" unique_id=97130097]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.837126, 2, 2.678175)
+use_collision = true
+mesh = SubResource("BoxMesh_i2tgm")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="World" unique_id=1813995968]
+transform = Transform3D(1.4076238, 0, -1.4076239, 0, 0.5920784, 0, 1.4076241, 0, 1.4076238, 6.8981333, 1, -7.3138657)
+use_collision = true
+mesh = SubResource("BoxMesh_i2tgm")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="World" unique_id=316557831]
+transform = Transform3D(1.4076238, 0, -1.4076239, 0, 0.41445488, 0, 1.4076241, 0, 1.4076238, 10.304939, 3.146039, -9.313866)
+use_collision = true
+mesh = SubResource("BoxMesh_i2tgm")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="World" unique_id=193883440]
+transform = Transform3D(1.975233, 0, -0.24751744, 0, 0.11841568, 0, 0.24751751, 0, 1.9752327, 9.280423, 5.1671214, -15.899029)
+use_collision = true
+mesh = SubResource("BoxMesh_i2tgm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=1630139153]
+transform = Transform3D(1, 0, 0, 0, 0.90788066, 0.41922873, 0, -0.41922873, 0.90788066, 0, 5.126439, 0)
+light_color = Color(0.89027286, 0.9013319, 0.8620055, 1)
+shadow_enabled = true
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="World" unique_id=689423220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.173229, 4, -10.188069)
+use_collision = true
+mesh = SubResource("PrismMesh_k5whs")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="World" unique_id=2102572209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.173229, 2, 2.8119307)
+use_collision = true
+mesh = SubResource("PrismMesh_0meq5")
+
+[node name="Enemies" type="Node" parent="." unique_id=1457420686]
+
+[node name="Enemy" parent="Enemies" unique_id=1352805964 instance=ExtResource("2_k5whs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.386528)
+
+[node name="ShootingEnemy" parent="Enemies" unique_id=395718396 instance=ExtResource("3_0meq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.556355, 0, -6.2557316)
+
+[node name="Player" parent="." unique_id=1075427188 instance=ExtResource("3_7rttc")]

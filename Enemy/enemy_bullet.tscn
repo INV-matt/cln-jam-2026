@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dug0hfhj2sl31"]
+
+[ext_resource type="Script" uid="uid://cs0eskulks0lb" path="res://Enemy/enemy_bullet.gd" id="1_rfj1v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i2tgm"]
+radius = 0.005
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utduo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i2tgm"]
+radius = 0.05
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utduo"]
+radius = 0.03857422
+height = 0.13867188
+
+[node name="EnemyBullet" type="CharacterBody3D" unique_id=120914759]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_rfj1v")
+SPEED = 750
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=496027289]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_i2tgm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=428897454]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_utduo")
+mesh = SubResource("CapsuleMesh_i2tgm")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=273759135]
+collision_layer = 8
+collision_mask = 7
+
+[node name="HitBox" type="CollisionShape3D" parent="Area3D" unique_id=617631111]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_utduo")
+debug_color = Color(0.7899782, 0.36531368, 0.59308505, 0.41960785)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_hit"]
