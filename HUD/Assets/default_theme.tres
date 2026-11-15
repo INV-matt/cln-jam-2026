@@ -1,0 +1,60 @@
+[gd_resource type="Theme" format=3 uid="uid://b0j5tdkna21s3"]
+
+[ext_resource type="FontFile" uid="uid://273o5ifgvtm6" path="res://HUD/Assets/Anta-Regular.ttf" id="1_bpo80"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tafyk"]
+bg_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpo80"]
+bg_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epvdy"]
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8666667, 0.8666667, 0.8666667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl2al"]
+bg_color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wdal"]
+bg_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_bpo80")
+Button/styles/disabled = SubResource("StyleBoxFlat_tafyk")
+Button/styles/hover = SubResource("StyleBoxFlat_bpo80")
+Button/styles/normal = SubResource("StyleBoxFlat_epvdy")
+Button/styles/pressed = SubResource("StyleBoxFlat_yl2al")
+Label/fonts/font = ExtResource("1_bpo80")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_6wdal")
+RichTextLabel/fonts/normal_font = ExtResource("1_bpo80")

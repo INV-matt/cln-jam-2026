@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfghur0m5tgl6"
-path="res://.godot/imported/crosshair.svg-b2479c9692781ea4b7130cd671ef068d.ctex"
+uid="uid://bo3586gonbnn8"
+path="res://.godot/imported/Blue_Print_BG_128px.png-4da40da8dfa6d415b414fb9692e86b4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HUD/crosshair.svg"
-dest_files=["res://.godot/imported/crosshair.svg-b2479c9692781ea4b7130cd671ef068d.ctex"]
+source_file="res://HUD/Assets/Blue_Print_BG_128px.png"
+dest_files=["res://.godot/imported/Blue_Print_BG_128px.png-4da40da8dfa6d415b414fb9692e86b4a.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

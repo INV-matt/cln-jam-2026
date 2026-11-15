@@ -10,15 +10,16 @@
 [ext_resource type="Script" uid="uid://bytlo0ihj2sb" path="res://Common/level_selector.gd" id="5_qqq7b"]
 [ext_resource type="Script" uid="uid://kvu18inhp1hj" path="res://HUD/pause_menu.gd" id="7_xbodk"]
 [ext_resource type="Script" uid="uid://brvv3e2g3ge17" path="res://HUD/death_menu.gd" id="9_i8a1s"]
+[ext_resource type="Script" uid="uid://cwf1s6dpsowkk" path="res://HUD/main_menu.gd" id="11_34hby"]
+[ext_resource type="Texture2D" uid="uid://cv7heqjff5rap" path="res://HUD/Assets/Blue_Print_BG_64px.png" id="12_6wdal"]
+[ext_resource type="Texture2D" uid="uid://ckvvg6rkmuy1w" path="res://HUD/Assets/Logo.png" id="12_40tq0"]
+[ext_resource type="FontFile" uid="uid://273o5ifgvtm6" path="res://HUD/Assets/Anta-Regular.ttf" id="13_ci2lm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbodk"]
-bg_color = Color(0.165418, 0.16541803, 0.16541791, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ci2lm"]
+bg_color = Color(0.30588236, 0.4509804, 0.79607844, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2tgm"]
-bg_color = Color(0.17888433, 0.17888439, 0.17888427, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utduo"]
-bg_color = Color(0.21487582, 0.21487582, 0.21487582, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ci2lm"]
+texture = ExtResource("12_6wdal")
 
 [node name="Main" type="Node3D" unique_id=651417131]
 process_mode = 3
@@ -28,31 +29,6 @@ LevelList = Array[PackedScene]([ExtResource("3_qqq7b"), ExtResource("2_0285w"), 
 [node name="PlayerContainer" type="Node" parent="." unique_id=504309912]
 process_mode = 1
 
-[node name="DEBUG_VIEW" type="CanvasLayer" parent="." unique_id=374910260]
-unique_name_in_owner = true
-process_mode = 3
-layer = 200
-visible = false
-
-[node name="Panel" type="Panel" parent="DEBUG_VIEW" unique_id=355806208]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="DEBUG_VIEW" unique_id=22686408]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 128
-text = "YOU DED"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="GAME_MANAGER" type="Node" parent="." unique_id=1336254587]
 unique_name_in_owner = true
 process_mode = 1
@@ -61,6 +37,7 @@ script = ExtResource("3_i206d")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2121278149]
 unique_name_in_owner = true
 layer = 100
+visible = false
 script = ExtResource("4_0285w")
 
 [node name="MainBox" type="MarginContainer" parent="HUD" unique_id=1874448324]
@@ -79,6 +56,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
 text = "BULLETS: 999"
 
 [node name="Time" type="RichTextLabel" parent="HUD/MainBox" unique_id=1630318678]
@@ -86,8 +64,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[color=#00ff00]67.1044[/color]"
+text = "[color=#00ff00]67.104[/color]"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -97,11 +76,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
 text = "ENEMIES: 4"
 horizontal_alignment = 2
 
 [node name="LEVEL_SELECTOR" type="CanvasLayer" parent="." unique_id=858040040]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("5_qqq7b")
 
 [node name="PanelContainer" type="PanelContainer" parent="LEVEL_SELECTOR" unique_id=1647739481]
@@ -110,7 +91,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xbodk")
 
 [node name="MainBox" type="MarginContainer" parent="LEVEL_SELECTOR/PanelContainer" unique_id=1797614803]
 layout_mode = 2
@@ -121,11 +101,11 @@ theme_override_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LEVEL_SELECTOR/PanelContainer/MainBox" unique_id=1387497419]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 64
 
 [node name="Label" type="Label" parent="LEVEL_SELECTOR/PanelContainer/MainBox/VBoxContainer" unique_id=1788286949]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 text = "Select A Level"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -135,7 +115,9 @@ uppercase = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-columns = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
 
 [node name="PAUSE_MENU" type="CanvasLayer" parent="." unique_id=337617927 node_paths=PackedStringArray("btn_resume", "btn_restart", "btn_quit")]
 unique_name_in_owner = true
@@ -151,7 +133,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_i2tgm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ci2lm")
 
 [node name="MarginContainer" type="MarginContainer" parent="PAUSE_MENU/PanelContainer" unique_id=1685851415]
 layout_mode = 2
@@ -162,28 +144,33 @@ theme_override_constants/margin_bottom = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PAUSE_MENU/PanelContainer/MarginContainer" unique_id=1431791729]
 layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="Resume" type="Button" parent="PAUSE_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=1808279940]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
 text = "Resume Level"
 
 [node name="Restart" type="Button" parent="PAUSE_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=2146995788]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
 text = "Restart Level"
 
 [node name="Quit" type="Button" parent="PAUSE_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=1350354948]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
 text = "Quit Level"
 
 [node name="DEATH_MENU" type="CanvasLayer" parent="." unique_id=2070391409 node_paths=PackedStringArray("btn_restart", "btn_quit")]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 script = ExtResource("9_i8a1s")
 btn_restart = NodePath("PanelContainer/MarginContainer/VBoxContainer/Restart")
 btn_quit = NodePath("PanelContainer/MarginContainer/VBoxContainer/Quit")
@@ -194,7 +181,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_utduo")
 
 [node name="MarginContainer" type="MarginContainer" parent="DEATH_MENU/PanelContainer" unique_id=506697770]
 layout_mode = 2
@@ -205,20 +191,81 @@ theme_override_constants/margin_bottom = 150
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DEATH_MENU/PanelContainer/MarginContainer" unique_id=1043056722]
 layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="DEATH_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=1950804068]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 text = "YOU DIED"
 horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="DEATH_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=2062988834]
+layout_mode = 2
 
 [node name="Restart" type="Button" parent="DEATH_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=2120698714]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
 text = "Restart Level"
 
 [node name="Quit" type="Button" parent="DEATH_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=327155893]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
 text = "Quit Level"
+
+[node name="MAIN_MENU" type="CanvasLayer" parent="." unique_id=1761196891 node_paths=PackedStringArray("btn_Start", "btn_Quit")]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("11_34hby")
+btn_Start = NodePath("BG/VBoxContainer/Start")
+btn_Quit = NodePath("BG/VBoxContainer/Quit")
+
+[node name="BG" type="Panel" parent="MAIN_MENU" unique_id=322492759]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ci2lm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MAIN_MENU/BG" unique_id=2108020175]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -540.0
+offset_right = 1792.0
+offset_bottom = -128.0
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Start" type="Button" parent="MAIN_MENU/BG/VBoxContainer" unique_id=1259771870]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("13_ci2lm")
+theme_override_font_sizes/font_size = 64
+text = "Select Level"
+
+[node name="Quit" type="Button" parent="MAIN_MENU/BG/VBoxContainer" unique_id=1721226976]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("13_ci2lm")
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="MAIN_MENU" unique_id=382504786]
+offset_left = 128.0
+offset_top = 141.0
+offset_right = 1792.0
+offset_bottom = 477.53442
+size_flags_vertical = 3
+texture = ExtResource("12_40tq0")
+expand_mode = 5
+stretch_mode = 5

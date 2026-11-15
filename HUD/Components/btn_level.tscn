@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://bpd07et88qav5"]
 
-[ext_resource type="Script" uid="uid://5fvobf6ne4wl" path="res://HUD/btn_level.gd" id="1_dgf51"]
+[ext_resource type="Script" uid="uid://5fvobf6ne4wl" path="res://HUD/Components/btn_level.gd" id="1_dgf51"]
 
 [node name="btn_Level" type="Button" unique_id=1379316820]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
 text = "Level X"
 script = ExtResource("1_dgf51")
 

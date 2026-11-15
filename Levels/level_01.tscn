@@ -48,7 +48,7 @@ shadow_mesh = SubResource("ArrayMesh_5ly20")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ykxcy"]
 render_priority = 0
 shader = ExtResource("3_lkd0j")
-shader_parameter/color = Color(0.30620345, 0.4526108, 0.794841, 1)
+shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
 shader_parameter/grid_color = Color(1, 1, 1, 1)
 shader_parameter/grid_width = 0.050000002375
 shader_parameter/grid_dim = 2.0

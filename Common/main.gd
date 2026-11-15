@@ -10,11 +10,11 @@ var CurrentLevelId: int = 0
 var CurrentLevel: BaseLevel
 
 @onready var hud: HUD = %HUD
-@onready var levelSelector = %LEVEL_SELECTOR
+@onready var levelSelector: CanvasLayer = %LEVEL_SELECTOR
 @onready var GM: GameManager = %GAME_MANAGER
+@onready var mainMenu: CanvasLayer = %MAIN_MENU
 
 func _ready() -> void:
-  #if Globals.DEBUG: %DEBUG_VIEW.hide()
   get_tree().paused = false
 
   Signals.level_start.connect(_on_level_start)
@@ -24,7 +24,9 @@ func _ready() -> void:
 
   levelSelector.initialize(LevelList.size())
 
-  Signals.level_start.emit(3) # TODO
+  mainMenu.show()
+
+  #Signals.level_start.emit(3) # TODO
 
 
 func _on_level_start(id: int) -> void:

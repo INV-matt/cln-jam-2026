@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xu6ynmpfl5so" path="res://Enemy/enemy.tscn" id="4_i7vav"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gff3n"]
-albedo_color = Color(0.35703316, 0.6491472, 0.8885758, 1)
+albedo_color = Color(0.30588236, 0.4509804, 0.79607844, 1)
 
 [node name="BaseLevel" type="Node3D" unique_id=565035297 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
 process_mode = 1

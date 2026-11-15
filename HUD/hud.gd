@@ -13,8 +13,8 @@ func setTime(value: float) -> void:
   var col = "green" if value > 0 else "red"
   value = abs(value)
   var sec: int = floor(value)
-  var ms: float = (value - sec) * 1000
-  lbl_Time.text = "[color=%s]%2d:%03d[/color]" % [col, sec, ms] # A QUANTO PARE IL MENO È UNA FUCKING CIFRA
+  var cs: float = floor((value - sec) * 100)
+  lbl_Time.text = "[color=%s][code]%02d:%02d[/code][/color]" % [col, sec, cs] # A QUANTO PARE IL MENO È UNA FUCKING CIFRA
 
 
 func showTime(value: bool) -> void:

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-@onready var btn_lvl_scene = preload("res://HUD/btn_level.tscn")
+@onready var btn_lvl_scene = preload("res://HUD/Components/btn_level.tscn")
 
 func _ready() -> void:
   Signals.level_completed.connect(_on_level_completed)
