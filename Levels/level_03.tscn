@@ -132,6 +132,10 @@ size = Vector3(3, 0.2, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 7, 22.5)
 size = Vector3(2, 0.2, 9)
 
+[node name="CSGBox3D11" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=549273658]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 8, 33)
+size = Vector3(2, 0.2, 9)
+
 [node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1589402784]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 6.5, 17.5)
 size = Vector3(4, 0.2, 5)
@@ -199,6 +203,18 @@ size = Vector3(4, 5, 4)
 [node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=505104083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5, 46)
 size = Vector3(2, 10, 2)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1230383311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 8, 33)
+radius = 2.0
+height = 16.0
+sides = 32
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1849346945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 8, 33)
+radius = 2.0
+height = 16.0
+sides = 32
 
 [node name="BulletPickup" parent="LevelContainer" unique_id=161911559 instance=ExtResource("7_p0x8g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 9.2, 36)

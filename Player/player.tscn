@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://doin3x8odmcwg" path="res://Player/player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://ct71bl052ct3a" path="res://Weapons/player_knife.tscn" id="2_btcbx"]
-[ext_resource type="Texture2D" uid="uid://cfghur0m5tgl6" path="res://HUD/crosshair.svg" id="4_k53q1"]
+[ext_resource type="Texture2D" uid="uid://cfghur0m5tgl6" path="res://HUD/Assets/crosshair.svg" id="4_k53q1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i2tgm"]
 
