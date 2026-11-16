@@ -6,6 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://cx04l753fp6y5" path="res://Enemy/shooting_enemy.tscn" id="3_i7vav"]
 [ext_resource type="Environment" uid="uid://cidvu8afblr6g" path="res://Common/Default_Env.tres" id="4_gff3n"]
 [ext_resource type="PackedScene" uid="uid://xu6ynmpfl5so" path="res://Enemy/enemy.tscn" id="4_i7vav"]
+[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="6_5wetp"]
+[ext_resource type="PackedScene" uid="uid://dc4ednytd0whv" path="res://Weapons/bullet_pickup.tscn" id="7_p0x8g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7vav"]
+render_priority = 0
+shader = ExtResource("6_5wetp")
+shader_parameter/color = Color(0.91954255, 0.9195426, 0.91954255, 1)
+shader_parameter/grid_color = Color(0, 0, 0, 1)
+shader_parameter/grid_width = 0.05
+shader_parameter/grid_dim = 2.0
+shader_parameter/dimensions = Vector3(30, 50, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gff3n"]
 albedo_color = Color(0.30588236, 0.4509804, 0.79607844, 1)
@@ -42,33 +53,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
 [node name="LevelContainer" type="Node3D" parent="." unique_id=2008401292]
 unique_name_in_owner = true
 
+[node name="Level" type="CSGCombiner3D" parent="LevelContainer" unique_id=1181569069]
+visible = false
+material_override = SubResource("ShaderMaterial_i7vav")
+use_collision = true
+
 [node name="Platforms" type="CSGCombiner3D" parent="LevelContainer" unique_id=1136842683]
 material_override = SubResource("StandardMaterial3D_gff3n")
 use_collision = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1524148254]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
-size = Vector3(6, 0.1, 40)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1925338847]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 18)
-size = Vector3(6, 0.1, 40)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1363735297]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 52)
-size = Vector3(6, 0.1, 12)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1425058951]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 52)
-size = Vector3(6, 0.1, 12)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1454310650]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
-size = Vector3(32, 0.1, 8)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=457208965]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 42)
-size = Vector3(32, 0.1, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27)
+size = Vector3(40, 0.1, 60)
 
 [node name="Walls" type="CSGCombiner3D" parent="LevelContainer" unique_id=1280136303]
 use_collision = true
@@ -152,6 +148,9 @@ sides = 24
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, -1.5)
 height = 6.0
 sides = 24
+
+[node name="BulletPickup" parent="LevelContainer" unique_id=161911559 instance=ExtResource("7_p0x8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.772818, 0, 0)
 
 [node name="Env" type="WorldEnvironment" parent="." unique_id=677469241]
 environment = ExtResource("4_gff3n")

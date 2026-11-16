@@ -217,45 +217,7 @@ func handle_knife_start_lvl() -> void:
 func handle_knife_end_lvl() -> void:
   pass
 
-# UNCOMMENT IF DECIDE TO USE STAIRS
-# REPLACE move_and_slide() with: 
-#  if !_snap_up_to_stairs_check(delta):
-#   move_and_slide()
-#   _snap_down_to_stairs_check()
-#
-# func _snap_down_to_stairs_check() -> void:
-#   var did_snap: bool = false
-#   %StairBelowRC.force_raycast_update()
-#   var floor_below: bool = %StairBelowRC.is_colliding() and not _is_surface_too_steep(%StairBelowRC.get_collision_normal())
-#   var was_on_floor_last_frame = Engine.get_physics_frames() == last_frame_on_floor
-#   if not is_on_floor() and velocity.y <= 0 and (was_on_floor_last_frame or snapped_to_stair_last_frame) and floor_below:
-#     var body_test_result = KinematicCollision3D.new()
-#     if self.test_move(self.global_transform, Vector3(0, -MAX_STEP_HEIGHT, 0), body_test_result):
-#       var translate_y = body_test_result.get_travel().y
-#       self.position.y += translate_y
-#       apply_floor_snap()
-#       did_snap = true
-#   snapped_to_stair_last_frame = did_snap
-
-# func _snap_up_to_stairs_check(delta) -> bool:
-#   if !is_on_floor() && !snapped_to_stair_last_frame: return false
-#   if self.velocity.y > 0 or (self.velocity * Vector3(1, 0, 1)).length() == 0: return false
-
-#   var expected_move: Vector3 = velocity * Vector3(1, 0, 1) * delta
-#   var step_pos_with_clearance := global_transform.translated(expected_move + Vector3(0, MAX_STEP_HEIGHT * 2, 0))
-  
-#   var result := KinematicCollision3D.new()
-#   if (self.test_move(step_pos_with_clearance, Vector3(0, -MAX_STEP_HEIGHT * 2, 0), result)
-#     && (result.get_collider().is_class("StaticBody3D") || result.get_collider().is_class("CSGShape3D"))):
-#       var step_height := (step_pos_with_clearance.origin + result.get_travel() - global_position).y
-#       if step_height > MAX_STEP_HEIGHT || step_height <= 0.1 || (result.get_position() - self.global_position).y > MAX_STEP_HEIGHT: return false
-
-#       %StairForwardRC.global_position = result.get_position() + Vector3(0, MAX_STEP_HEIGHT, 0) + expected_move.normalized() * 0.1
-#       %StairForwardRC.force_raycast_update()
-#       if %StairForwardRC.is_colliding() && !_is_surface_too_steep(%StairForwardRC.get_collision_normal()):
-#         self.global_position = step_pos_with_clearance.origin + result.get_travel()
-#         apply_floor_snap()
-#         snapped_to_stair_last_frame = true
-#         return true
-
-#   return false
+func pickup_bullet(bullets: int) -> bool:
+  if currentGun == null: return false
+  currentGun.remainingBullets += bullets
+  return true
