@@ -5,8 +5,8 @@ class_name Player
 @export_group("Jump Settings")
 @export var JUMP_VELOCITY: float = 5.1 # v^2 = 2gh -> 5
 @export var AUTO_BHOP: bool = true
-@export var JUMP_GRACE_FRAMES: int = 12
-@export var COYOTE_FRAMES: int = 12
+@export var JUMP_GRACE_FRAMES: int = 6
+@export var COYOTE_FRAMES: int = 6
 
 @export_group("Ground Movement Settings")
 @export var WALK_SPEED: float = 10.

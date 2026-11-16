@@ -9,17 +9,47 @@
 [ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="6_5wetp"]
 [ext_resource type="PackedScene" uid="uid://dc4ednytd0whv" path="res://Weapons/bullet_pickup.tscn" id="7_p0x8g"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7vav"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wdal"]
 render_priority = 0
 shader = ExtResource("6_5wetp")
-shader_parameter/color = Color(0.91954255, 0.9195426, 0.91954255, 1)
-shader_parameter/grid_color = Color(0, 0, 0, 1)
+shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+shader_parameter/grid_color = Color(1, 1, 1, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
-shader_parameter/dimensions = Vector3(30, 50, 1)
+shader_parameter/dimensions = Vector3(60, 40, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hj3xb"]
+render_priority = 0
+shader = ExtResource("6_5wetp")
+shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/grid_width = 0.05
+shader_parameter/grid_dim = 2.0
+shader_parameter/dimensions = Vector3(24, 40, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_armlc"]
+render_priority = 0
+shader = ExtResource("6_5wetp")
+shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/grid_width = 0.05
+shader_parameter/grid_dim = 2.0
+shader_parameter/dimensions = Vector3(60, 24, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0x8g"]
+render_priority = 0
+shader = ExtResource("6_5wetp")
+shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/grid_width = 0.05
+shader_parameter/grid_dim = 2.0
+shader_parameter/dimensions = Vector3(60, 24, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gff3n"]
-albedo_color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+albedo_color = Color(0.80801755, 0.5190456, 0.37639648, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mfy8"]
+albedo_color = Color(0.45, 0.198, 0.29040003, 1)
 
 [node name="BaseLevel" type="Node3D" unique_id=565035297 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
 process_mode = 1
@@ -38,13 +68,13 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 unique_name_in_owner = true
 
 [node name="ShootingEnemy" parent="EnemyContainer" unique_id=395718396 instance=ExtResource("3_i7vav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 10, 46)
 
 [node name="ShootingEnemy2" parent="EnemyContainer" unique_id=1612585600 instance=ExtResource("3_i7vav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 5, 41)
 
 [node name="Enemy" parent="EnemyContainer" unique_id=1352805964 instance=ExtResource("4_i7vav")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 55)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 10, 23)
 
 [node name="EndLevelZone" parent="." unique_id=96569969 instance=ExtResource("3_f3lte")]
 unique_name_in_owner = true
@@ -54,103 +84,124 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
 unique_name_in_owner = true
 
 [node name="Level" type="CSGCombiner3D" parent="LevelContainer" unique_id=1181569069]
-visible = false
-material_override = SubResource("ShaderMaterial_i7vav")
 use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Level" unique_id=1524148254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27)
+size = Vector3(40, 0.1, 60)
+material = SubResource("ShaderMaterial_6wdal")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Level" unique_id=1663949859]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 12, -3)
+size = Vector3(40, 0.1, 24)
+material = SubResource("ShaderMaterial_hj3xb")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Level" unique_id=962243904]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 20, 12, 27)
+size = Vector3(24, 0.1, 60)
+material = SubResource("ShaderMaterial_armlc")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Level" unique_id=1744144013]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -20, 12, 27)
+size = Vector3(24, 0.1, 60)
+material = SubResource("ShaderMaterial_p0x8g")
 
 [node name="Platforms" type="CSGCombiner3D" parent="LevelContainer" unique_id=1136842683]
 material_override = SubResource("StandardMaterial3D_gff3n")
 use_collision = true
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1524148254]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27)
-size = Vector3(40, 0.1, 60)
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=63278759]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 6.5, 2.707, 7.493)
+size = Vector3(3, 0.2, 11.170898)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D" unique_id=534452777]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, 0, -0.15167856, 6.8487144)
+operation = 2
+size = Vector3(3, 1, 3)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=495425142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 13.5)
+size = Vector3(10, 6, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D2" unique_id=169448649]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 3.5, 2.853, -1.662)
+operation = 2
+size = Vector3(3, 0.2, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1592121550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 7, 22.5)
+size = Vector3(2, 0.2, 9)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1589402784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 6.5, 17.5)
+size = Vector3(4, 0.2, 5)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1270921053]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 8.25, 16)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1805897338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 8, 27)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D6" unique_id=717662862]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.021094, 0)
+size = Vector3(0.4, 8, 0.4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=2126777368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 9, 35)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D10" unique_id=983171168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.521094, 0)
+size = Vector3(0.4, 9, 0.4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1224441595]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 7, 26)
+size = Vector3(2, 0.2, 6)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=158516360]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -13, 8, 26)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1510827467]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18.5, 9, 26)
+size = Vector3(2, 0.2, 3)
 
 [node name="Walls" type="CSGCombiner3D" parent="LevelContainer" unique_id=1280136303]
+material_override = SubResource("StandardMaterial3D_6mfy8")
 use_collision = true
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1720009953]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 12)
-height = 6.0
-sides = 24
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1035893846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, 18.5)
+size = Vector3(4, 10, 13)
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1962790635]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 12)
-height = 6.0
-sides = 24
+[node name="CSGBox3D7" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=786321906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5, 13.5)
+size = Vector3(12, 10, 3)
 
-[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=447823517]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 25)
-height = 6.0
-sides = 24
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=192715420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 5, 23)
+size = Vector3(4, 10, 4)
 
-[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=178433180]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 25)
-height = 6.0
-sides = 24
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=54050429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 5, 23)
+size = Vector3(4, 10, 4)
 
-[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1036307676]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 38)
-height = 6.0
-sides = 24
+[node name="CSGBox3D6" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=917027828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 8, 23)
+size = Vector3(6, 4, 4)
 
-[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1988322796]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 3, 38.5)
-height = 6.0
-sides = 24
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1952848481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, 41)
+size = Vector3(4, 5, 4)
 
-[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1785720040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 3, 45.5)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=21681865]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 45.5)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=108968207]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 45.5)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=881250415]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 45.5)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1731525219]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 38.5)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1126772529]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 38)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=2063142782]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 57.5)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D16" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=158067089]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 57.5)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1464870268]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -1.5)
-height = 6.0
-sides = 24
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1122000205]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, -1.5)
-height = 6.0
-sides = 24
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=505104083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5, 46)
+size = Vector3(2, 10, 2)
 
 [node name="BulletPickup" parent="LevelContainer" unique_id=161911559 instance=ExtResource("7_p0x8g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.772818, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 9.2, 36)
 
 [node name="Env" type="WorldEnvironment" parent="." unique_id=677469241]
 environment = ExtResource("4_gff3n")
