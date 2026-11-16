@@ -1,6 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://b0j5tdkna21s3"]
 
 [ext_resource type="FontFile" uid="uid://273o5ifgvtm6" path="res://HUD/Assets/Anta-Regular.ttf" id="1_bpo80"]
+[ext_resource type="FontFile" uid="uid://5ab3iiksrnxd" path="res://HUD/Assets/ShareTechMono-Regular.ttf" id="2_yl2al"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tafyk"]
 bg_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
@@ -57,4 +58,5 @@ Button/styles/normal = SubResource("StyleBoxFlat_epvdy")
 Button/styles/pressed = SubResource("StyleBoxFlat_yl2al")
 Label/fonts/font = ExtResource("1_bpo80")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_6wdal")
+RichTextLabel/fonts/mono_font = ExtResource("2_yl2al")
 RichTextLabel/fonts/normal_font = ExtResource("1_bpo80")

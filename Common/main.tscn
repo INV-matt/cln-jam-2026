@@ -37,7 +37,6 @@ script = ExtResource("3_i206d")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2121278149]
 unique_name_in_owner = true
 layer = 100
-visible = false
 script = ExtResource("4_0285w")
 
 [node name="MainBox" type="MarginContainer" parent="HUD" unique_id=1874448324]
@@ -64,9 +63,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1, 0.7)
 theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/mono_font_size = 65
 bbcode_enabled = true
-text = "[color=#00ff00]67.104[/color]"
+text = "[color=#00ff00][code]67.104[/code][/color]"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1

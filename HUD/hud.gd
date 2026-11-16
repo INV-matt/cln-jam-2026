@@ -7,6 +7,7 @@ class_name HUD
 
 func _ready() -> void:
   Signals.bullets_changed.connect(setBullets)
+  hide()
 
 
 func setTime(value: float) -> void:
