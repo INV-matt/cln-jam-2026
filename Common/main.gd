@@ -40,6 +40,7 @@ func _on_level_start(id: int) -> void:
 
   get_tree().paused = false
   Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+  GM.isInLevel = true
  
   print("Initializing level %d" % id)
   if CurrentLevel: CurrentLevel.queue_free()
@@ -74,6 +75,8 @@ func _on_level_completed() -> void:
   Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
   GM.isTimeRunning = false
   hud.hide()
+
+  GM.isInLevel = false
 
   print("Clearing current level")
   if CurrentLevel: CurrentLevel.queue_free()

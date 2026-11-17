@@ -16,11 +16,33 @@
 [ext_resource type="Texture2D" uid="uid://ckvvg6rkmuy1w" path="res://HUD/Assets/Logo.png" id="12_40tq0"]
 [ext_resource type="FontFile" uid="uid://273o5ifgvtm6" path="res://HUD/Assets/Anta-Regular.ttf" id="13_ci2lm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ci2lm"]
-bg_color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+[sub_resource type="Shader" id="Shader_n5iy0"]
+code = "shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear_mipmap;
+
+uniform float blur_lod : hint_range(0.0, 5.0) = 3.5;
+
+void fragment() {
+    vec3 bg = textureLod(screen_texture, SCREEN_UV, blur_lod).rgb;
+    vec4 src = COLOR;
+
+    COLOR.rgb = mix(bg, src.rgb, src.a);
+    COLOR.a = 1.0;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0mjk"]
+shader = SubResource("Shader_n5iy0")
+shader_parameter/blur_lod = 3.50000016625
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0mjk"]
+bg_color = Color(0.13, 0.13, 0.13, 0.5019608)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ci2lm"]
 texture = ExtResource("12_6wdal")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s46iy"]
+bg_color = Color(0.07058824, 0.07058824, 0.07058824, 0.5019608)
 
 [node name="Main" type="Node3D" unique_id=651417131]
 process_mode = 3
@@ -32,12 +54,12 @@ process_mode = 1
 
 [node name="GAME_MANAGER" type="Node" parent="." unique_id=1336254587]
 unique_name_in_owner = true
-process_mode = 1
 script = ExtResource("3_i206d")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2121278149]
 unique_name_in_owner = true
 layer = 100
+visible = false
 script = ExtResource("4_0285w")
 
 [node name="MainBox" type="Control" parent="HUD" unique_id=882222553]
@@ -126,10 +148,10 @@ theme_override_font_sizes/font_size = 32
 text = "ENEMIES: 4"
 horizontal_alignment = 2
 
-[node name="LEVEL_SELECTOR" type="CanvasLayer" parent="." unique_id=858040040]
+[node name="LEVEL_SELECTOR" type="CanvasLayer" parent="." unique_id=858040040 node_paths=PackedStringArray("btn_mainMenu")]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("5_qqq7b")
+btn_mainMenu = NodePath("PanelContainer/MainBox/VBoxContainer/ToMainMenu")
 
 [node name="PanelContainer" type="PanelContainer" parent="LEVEL_SELECTOR" unique_id=1647739481]
 anchors_preset = 15
@@ -140,17 +162,18 @@ grow_vertical = 2
 
 [node name="MainBox" type="MarginContainer" parent="LEVEL_SELECTOR/PanelContainer" unique_id=1797614803]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 250
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LEVEL_SELECTOR/PanelContainer/MainBox" unique_id=1387497419]
 layout_mode = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="LEVEL_SELECTOR/PanelContainer/MainBox/VBoxContainer" unique_id=1788286949]
 layout_mode = 2
+size_flags_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Select A Level"
 horizontal_alignment = 1
@@ -160,10 +183,16 @@ uppercase = true
 [node name="LevelButtons" type="GridContainer" parent="LEVEL_SELECTOR/PanelContainer/MainBox/VBoxContainer" unique_id=637013110]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 16
-columns = 3
+size_flags_vertical = 8
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 2
+
+[node name="ToMainMenu" type="Button" parent="LEVEL_SELECTOR/PanelContainer/MainBox/VBoxContainer" unique_id=813268922]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "      MAIN MENU      "
 
 [node name="PAUSE_MENU" type="CanvasLayer" parent="." unique_id=337617927 node_paths=PackedStringArray("btn_resume", "btn_restart", "btn_quit")]
 unique_name_in_owner = true
@@ -174,12 +203,13 @@ btn_restart = NodePath("PanelContainer/MarginContainer/VBoxContainer/Restart")
 btn_quit = NodePath("PanelContainer/MarginContainer/VBoxContainer/Quit")
 
 [node name="PanelContainer" type="PanelContainer" parent="PAUSE_MENU" unique_id=1236702653]
+material = SubResource("ShaderMaterial_s0mjk")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ci2lm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_s0mjk")
 
 [node name="MarginContainer" type="MarginContainer" parent="PAUSE_MENU/PanelContainer" unique_id=1685851415]
 layout_mode = 2
@@ -190,25 +220,34 @@ theme_override_constants/margin_bottom = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PAUSE_MENU/PanelContainer/MarginContainer" unique_id=1431791729]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="PAUSE_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=212336123]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "    GAME PAUSED    "
+horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="PAUSE_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=1808279940]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 9
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 64
 text = "Resume Level"
 
 [node name="Restart" type="Button" parent="PAUSE_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=2146995788]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 9
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 64
 text = "Restart Level"
 
 [node name="Quit" type="Button" parent="PAUSE_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=1350354948]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 9
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 64
 text = "Quit Level"
@@ -222,6 +261,7 @@ btn_restart = NodePath("PanelContainer/MarginContainer/VBoxContainer/Restart")
 btn_quit = NodePath("PanelContainer/MarginContainer/VBoxContainer/Quit")
 
 [node name="PanelContainer" type="PanelContainer" parent="DEATH_MENU" unique_id=1103320730]
+material = SubResource("ShaderMaterial_s0mjk")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -230,34 +270,34 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="DEATH_MENU/PanelContainer" unique_id=506697770]
 layout_mode = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 150
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 150
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DEATH_MENU/PanelContainer/MarginContainer" unique_id=1043056722]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="DEATH_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=1950804068]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
 text = "YOU DIED"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="DEATH_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=2062988834]
-layout_mode = 2
-
 [node name="Restart" type="Button" parent="DEATH_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=2120698714]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 64
 text = "Restart Level"
 
 [node name="Quit" type="Button" parent="DEATH_MENU/PanelContainer/MarginContainer/VBoxContainer" unique_id=327155893]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 64
 text = "Quit Level"
 
@@ -275,6 +315,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ci2lm")
+
+[node name="Panel" type="Panel" parent="MAIN_MENU/BG" unique_id=1497886188]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s46iy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MAIN_MENU/BG" unique_id=2108020175]
 layout_mode = 1

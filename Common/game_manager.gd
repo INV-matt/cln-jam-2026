@@ -25,6 +25,7 @@ var bulletsRemaining := 0:
     bulletsRemaining = val
     Hud.setBullets(bulletsRemaining)
 
+var isInLevel := false
 
 func _ready() -> void:
   Globals.GM = self
@@ -69,6 +70,7 @@ func _on_time_timeout() -> void:
   Signals.timer_timeout.emit()
 
 func _on_level_resume() -> void:
+  if !isInLevel: return
   get_tree().paused = false
   Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
   isTimeRunning = true
@@ -77,6 +79,9 @@ func _on_level_resume() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
   if event.is_action_pressed("ui_cancel"):
+    if %LEVEL_SELECTOR.visible:
+      %MAIN_MENU.show()
+      return
     PauseMenu.show()
     Hud.hide()
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

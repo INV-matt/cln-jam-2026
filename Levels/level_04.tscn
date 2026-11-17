@@ -17,13 +17,21 @@
 density = 0.5
 emission = Color(1, 1, 1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7i4m"]
+albedo_color = Color(0.20019999, 0.40912673, 0.77, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wr56a"]
+transparency = 1
+albedo_color = Color(0.6962283, 0.32382694, 0.7358575, 0.33333334)
+
 [node name="Level_04" type="Node3D" unique_id=565035297 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
 process_mode = 1
 script = ExtResource("1_yvass")
 PlayerSpawnPosition = NodePath("PlayerSpawnPoint")
 EndLevelZone = NodePath("EndLevelZone")
-Deadline = 10
+Deadline = 45
 playerGun = ExtResource("2_3mdkx")
+InitialBullets = 2
 
 [node name="PlayerSpawnPoint" type="Marker3D" parent="." unique_id=992644609]
 unique_name_in_owner = true
@@ -31,25 +39,64 @@ unique_name_in_owner = true
 [node name="EnemyContainer" type="Node3D" parent="." unique_id=2109253794]
 unique_name_in_owner = true
 
-[node name="ShootingEnemy" parent="EnemyContainer" unique_id=395718396 instance=ExtResource("3_np8y1")]
+[node name="ShootingEnemy2" parent="EnemyContainer" unique_id=395718396 instance=ExtResource("3_np8y1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 7.049999, -40)
+
+[node name="ShootingEnemy" parent="EnemyContainer" unique_id=2133747817 instance=ExtResource("3_np8y1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
 
 [node name="Enemy" parent="EnemyContainer" unique_id=1352805964 instance=ExtResource("4_424uw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
 
+[node name="ShootingEnemy3" parent="EnemyContainer" unique_id=1548992148 instance=ExtResource("3_np8y1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -37)
+
+[node name="Enemy2" parent="EnemyContainer" unique_id=1158528104 instance=ExtResource("4_424uw")]
+transform = Transform3D(0.86602527, -3.885336e-08, -0.49999997, -0.1294095, 0.9659258, -0.22414388, 0.48296297, 0.258819, 0.8365163, -51.5, 0.466, 33.5)
+
+[node name="ShootingEnemy4" parent="EnemyContainer" unique_id=1357104303 instance=ExtResource("3_np8y1")]
+transform = Transform3D(0.25881904, 0, 0.96592575, 0, 1, 0, -0.96592575, 0, 0.25881904, 42.585785, 8, 41.878677)
+
 [node name="EndLevelZone" parent="." unique_id=96569969 instance=ExtResource("3_8w6fg")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
+Height = 50.0
 
 [node name="LevelContainer" type="Node3D" parent="." unique_id=2008401292]
 unique_name_in_owner = true
+
+[node name="Death_Zone" parent="LevelContainer" unique_id=1968610156 instance=ExtResource("8_424uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelContainer/Death_Zone" unique_id=438923995]
+shape = SubResource("WorldBoundaryShape3D_i2tgm")
+
+[node name="FogVolume" type="FogVolume" parent="LevelContainer/Death_Zone" unique_id=1922817988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -91.5, 0)
+size = Vector3(1000, 200, 1000)
+material = SubResource("FogMaterial_utduo")
 
 [node name="Platforms" type="CSGCombiner3D" parent="LevelContainer" unique_id=298669523]
 material_override = ExtResource("4_yvass")
 use_collision = true
 
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="LevelContainer/Platforms" unique_id=1991178660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -37)
+radius = 5.0
+height = 0.2
+sides = 6
+
 [node name="Ramp" type="CSGPolygon3D" parent="LevelContainer/Platforms" unique_id=1162411339]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -10)
+polygon = PackedVector2Array(0, 0, 20, 4, 20, 3.8, 0, -0.2)
+depth = 4.0
+
+[node name="Ramp3" type="CSGPolygon3D" parent="LevelContainer/Platforms" unique_id=1569677127]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 10)
+polygon = PackedVector2Array(0, 0, 20, 4, 20, 3.8, 0, -0.2)
+depth = 4.0
+
+[node name="Ramp4" type="CSGPolygon3D" parent="LevelContainer/Platforms" unique_id=1007865208]
+transform = Transform3D(0.7071069, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.7071069, 4, 4, 44)
 polygon = PackedVector2Array(0, 0, 20, 4, 20, 3.8, 0, -0.2)
 depth = 4.0
 
@@ -70,73 +117,188 @@ size = Vector3(4, 0.2, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 6, -42)
 size = Vector3(4, 0.2, 4)
 
-[node name="Walls" type="CSGCombiner3D" parent="LevelContainer" unique_id=1334026644]
-material_override = ExtResource("5_3mdkx")
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1811355915]
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1811355915]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -35.95, 0)
 use_collision = true
 size = Vector3(20, 72, 20)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1771597444]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.95, -37)
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=21338593]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 26.785154, 7.89911, 54.46229)
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=2000726947]
+transform = Transform3D(0.6124756, 0, -0.7904895, 0, 1, 0, 0.7904895, 0, 0.6124756, 26.523306, 7.9177103, 56.44637)
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1290107951]
+transform = Transform3D(0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071067, 28.181618, 8, 53.313736)
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1520534492]
+transform = Transform3D(0.746655, 0, -0.6652114, 0, 1, 0, 0.6652114, 0, 0.746655, 29.414213, 7.8109837, 51.853733)
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1846963299]
+transform = Transform3D(0.4999999, 0, -0.8660253, 0, 1, 0, 0.8660253, 0, 0.4999999, 30.828426, 8, 50.439518)
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1337704072]
+transform = Transform3D(0.86602527, 0, -0.5, 0, 1, 0, 0.5, 0, 0.86602527, 31.554337, 8.159231, 48.246826)
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=500137666]
+transform = Transform3D(0.7071066, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071066, 33.508564, 7.8020306, 47.65934)
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1325195173]
+transform = Transform3D(0.5611926, 0, -0.82768506, 0, 1, 0, 0.82768506, 0, 0.5611926, 35.479946, 8.227151, 47.312004)
+size = Vector3(4, 0.2, 1)
+
+[node name="Zone1" type="CSGCombiner3D" parent="LevelContainer" unique_id=1334026644]
+material_override = ExtResource("5_3mdkx")
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Zone1" unique_id=1771597444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18, -37)
 use_collision = true
 size = Vector3(14, 44, 14)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1762036819]
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Zone1" unique_id=1762036819]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, -29.45, -37)
 use_collision = true
 size = Vector3(14, 83, 14)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=179220804]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -32.95, -40)
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Zone1" unique_id=179220804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -33, -40)
 use_collision = true
 size = Vector3(8, 80, 8)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=821026326]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -29.5, -40.5)
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="LevelContainer/Zone1" unique_id=821026326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -31.8125, -40.5)
 radius = 2.0
-height = 79.0
+height = 82.75
 sides = 16
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1181889518]
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="LevelContainer/Zone1" unique_id=1416149357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, -37)
+radius = 2.0
+height = 5.0
+sides = 16
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="LevelContainer/Zone1" unique_id=1181889518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, -27.75, -25.5)
 radius = 2.0
 height = 82.5
 sides = 16
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1729547616]
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="LevelContainer/Zone1" unique_id=1729547616]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5, -27.375, -14.5)
 radius = 2.0
 height = 83.25
 sides = 16
 
-[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=979554870]
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="LevelContainer/Zone1" unique_id=979554870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, -26.875, -5.5)
 radius = 2.0
 height = 84.25
 sides = 16
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=239558121]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, -29.5, -43.5)
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="LevelContainer/Zone1" unique_id=2061272101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, -32.5, -43.5)
 radius = 2.0
-height = 79.0
+height = 83.0
 sides = 16
 
 [node name="BulletPickup" parent="LevelContainer" unique_id=161911559 instance=ExtResource("8_d7i4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, 15.5, -5.5)
 
-[node name="Death_Zone" parent="LevelContainer" unique_id=1968610156 instance=ExtResource("8_424uw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+[node name="Zone2" type="CSGCombiner3D" parent="LevelContainer" unique_id=1136139179]
+material_override = SubResource("StandardMaterial3D_d7i4m")
+use_collision = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelContainer/Death_Zone" unique_id=438923995]
-shape = SubResource("WorldBoundaryShape3D_i2tgm")
+[node name="CSGBox3D6" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=2120954003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33, 37)
+use_collision = true
+size = Vector3(14, 74, 14)
 
-[node name="FogVolume" type="FogVolume" parent="LevelContainer/Death_Zone" unique_id=1922817988]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -91.5, 0)
-size = Vector3(1000, 200, 1000)
-material = SubResource("FogMaterial_utduo")
+[node name="CSGBox3D11" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=47902647]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 22.585785, -31, 59.878677)
+use_collision = true
+size = Vector3(9, 78, 9)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=230284234]
+transform = Transform3D(0.25881904, 0, 0.96592575, 0, 1, 0, -0.96592575, 0, 0.25881904, 42.585785, -31, 41.878677)
+use_collision = true
+size = Vector3(9, 78, 9)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=424622626]
+transform = Transform3D(0.25881904, 0, 0.96592575, 0, 1, 0, -0.96592575, 0, 0.25881904, 42.585785, 14.5, 41.878677)
+use_collision = true
+size = Vector3(9, 1, 9)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=1860576461]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, -16.5, -35.819626, 41.78815)
+use_collision = true
+size = Vector3(3, 81, 8)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=1761350771]
+transform = Transform3D(0.769814, 0.076760806, -0.6336357, -0.14914098, 0.9868929, -0.061638094, 0.6205991, 0.14195095, 0.7711721, -30.056156, -33.185204, 34.028587)
+use_collision = true
+size = Vector3(3, 75, 6)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=1855999820]
+transform = Transform3D(0.35072237, -0.089851715, -0.9321591, -0.046129517, 0.9925206, -0.11302613, 0.9353425, 0.08264084, 0.3439542, -17.485695, -28.57875, 46.16887)
+use_collision = true
+size = Vector3(3, 87, 3)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=950438221]
+transform = Transform3D(0.16393682, 0.11913429, 0.97925055, -0.046129517, 0.9925207, -0.11302615, -0.9853917, -0.026643213, 0.16820657, -32.485695, -28.57875, 30.168869)
+use_collision = true
+size = Vector3(3, 87, 3)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=2137451532]
+transform = Transform3D(0.86602527, 0, 0.49999997, 0, 0.9999999, 0, -0.4999999, 0, 0.86602527, -33.799374, -32.38836, 26.612803)
+use_collision = true
+size = Vector3(6, 75, 8)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=1164372732]
+transform = Transform3D(0.9659257, 0, -0.25881898, 0, 0.9999999, 0, 0.258819, 0, 0.9659257, -34.799374, -29.88836, 13.6128025)
+use_collision = true
+size = Vector3(6, 80, 8)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=249063379]
+transform = Transform3D(0.86602527, -3.785517e-08, -0.4999999, -0.12940948, 0.9659257, -0.22414385, 0.4829629, 0.25881898, 0.8365162, -51.799374, -35.723915, 23.56583)
+use_collision = true
+size = Vector3(6, 75, 8)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=1628091124]
+transform = Transform3D(0.10796057, 0.17361285, 0.9788783, -0.14466234, 0.97689664, -0.15730667, -0.9835735, -0.124623924, 0.13058153, -60.96191, -30.381775, 44.84483)
+use_collision = true
+size = Vector3(8, 85, 6)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=2093395439]
+transform = Transform3D(0.10796057, 0.17361285, 0.9788783, -0.14466234, 0.97689664, -0.15730667, -0.9835735, -0.124623924, 0.13058153, -56.73862, -32.688114, 48.697704)
+use_collision = true
+size = Vector3(6, 81, 4)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="LevelContainer/Zone2" unique_id=2142409096]
+transform = Transform3D(-0.95387876, -0.18301266, -0.23795298, -0.12940946, 0.96592575, -0.22414389, 0.27086583, -0.1830127, -0.9450596, -32.416145, -35.353024, 48.10153)
+use_collision = true
+size = Vector3(6, 76, 9)
+
+[node name="Win1" type="CSGBox3D" parent="LevelContainer" unique_id=740560036]
+transform = Transform3D(0.25881904, 0, 0.96592575, 0, 1, 0, -0.96592575, 0, 0.25881904, 38.23986, 11, 40.714188)
+material_override = SubResource("StandardMaterial3D_wr56a")
+use_collision = true
+size = Vector3(9, 6, 0.01)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="LevelContainer/Win1" unique_id=211850281]
+transform = Transform3D(-2.9802322e-08, 0, 1.0000012, 0, 1, 0, -1.0000012, 0, -2.9802322e-08, 4.488595, 0, 4.519567)
+use_collision = true
+size = Vector3(9, 6, 0.01)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2137876073]
 environment = ExtResource("4_np8y1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1214647647]
+transform = Transform3D(-0.8660253, -0.43301266, 0.25, 0, 0.50000006, 0.8660254, -0.49999994, 0.74999994, -0.43301272, 0, 22, 0)
