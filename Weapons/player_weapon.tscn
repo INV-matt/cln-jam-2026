@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2nandqvwi3oa" path="res://Weapons/player_weapon.gd" id="1_logn7"]
 [ext_resource type="Animation" uid="uid://8pe7j0m3sp52" path="res://Weapons/Animations/RESET.res" id="2_k6hca"]
+[ext_resource type="AudioStream" uid="uid://u2f4lhtsfk18" path="res://Weapons/Player_Shot.wav" id="3_k6hca"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7j7k4"]
 resource_name = "Gun_Handle"
@@ -191,6 +192,7 @@ model = NodePath("gun0")
 muzzle = NodePath("gun0/Gun/Muzzle")
 animPlayer = NodePath("gun0/AnimPlayer")
 audioPlayer = NodePath("AudioStreamPlayer3D")
+shotSound = ExtResource("3_k6hca")
 
 [node name="gun0" type="Node3D" parent="." unique_id=459191638]
 
@@ -205,3 +207,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4805595, 2.5007918)
 libraries/ = SubResource("AnimationLibrary_cefy1")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=190407889]
+bus = &"SFX"

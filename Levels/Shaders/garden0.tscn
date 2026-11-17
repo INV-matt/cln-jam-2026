@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cxxhwsa2ltos"]
 
-[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="1_k5whs"]
+[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Shaders/garden0_base_plane.gdshader" id="1_k5whs"]
 [ext_resource type="PackedScene" uid="uid://xu6ynmpfl5so" path="res://Enemy/enemy.tscn" id="2_k5whs"]
 [ext_resource type="PackedScene" path="res://Enemy/shooting_enemy.scn" id="3_0meq5"]
 [ext_resource type="PackedScene" uid="uid://dk4po5i5ohxtv" path="res://Player/player.tscn" id="3_7rttc"]

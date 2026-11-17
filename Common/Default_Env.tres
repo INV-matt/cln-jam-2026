@@ -4,7 +4,7 @@
 sky_top_color = Color(0.41168323, 0.3936996, 0.7579603, 1)
 sky_horizon_color = Color(0.7529412, 0.65882355, 0.69803923, 1)
 sky_energy_multiplier = 1.1
-ground_bottom_color = Color(0.21713099, 0.21438187, 0.23872763, 1)
+ground_bottom_color = Color(0.7529412, 0.65882355, 0.69803923, 1)
 ground_horizon_color = Color(0.7529412, 0.65882355, 0.69803923, 1)
 ground_energy_multiplier = 0.9
 
@@ -17,5 +17,9 @@ background_energy_multiplier = 1.2
 sky = SubResource("Sky_p0x8g")
 ambient_light_source = 3
 ssao_enabled = true
-adjustment_contrast = 1.2
-adjustment_saturation = 0.5
+fog_mode = 1
+fog_density = 1.0
+fog_height = -20.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.70804775, 0.7080478, 0.7080476, 1)

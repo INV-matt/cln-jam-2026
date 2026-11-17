@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/bg_color=Color(0.07131661, 0.07131653, 0.07131652, 1)
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://c4q1yjhpjtgxe"
+
 [autoload]
 
 Signals="*uid://1rbwo3w2y1ba"

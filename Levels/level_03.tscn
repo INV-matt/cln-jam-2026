@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://r0ptg6eyddfk" path="res://Levels/end_level_zone.tscn" id="3_f3lte"]
 [ext_resource type="PackedScene" uid="uid://cx04l753fp6y5" path="res://Enemy/shooting_enemy.tscn" id="3_i7vav"]
 [ext_resource type="PackedScene" uid="uid://xu6ynmpfl5so" path="res://Enemy/enemy.tscn" id="4_i7vav"]
-[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="6_5wetp"]
-[ext_resource type="Shader" uid="uid://cc0tqd1r807al" path="res://Levels/Gardens/transparent_bp.gdshader" id="7_armlc"]
-[ext_resource type="PackedScene" uid="uid://dc4ednytd0whv" path="res://Weapons/bullet_pickup.tscn" id="7_p0x8g"]
+[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Shaders/garden0_base_plane.gdshader" id="6_5wetp"]
+[ext_resource type="Shader" uid="uid://cc0tqd1r807al" path="res://Levels/Shaders/transparent_bp.gdshader" id="7_armlc"]
+[ext_resource type="PackedScene" uid="uid://dc4ednytd0whv" path="res://Weapons/Bullet_Pickup/bullet_pickup.tscn" id="7_p0x8g"]
+[ext_resource type="Material" uid="uid://du28uqhxn7id5" path="res://Levels/Materials/Wall_def.tres" id="8_armlc"]
+[ext_resource type="Material" uid="uid://cencw6wa8dla" path="res://Levels/Materials/Platform_def.tres" id="8_hj3xb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wdal"]
 render_priority = 0
@@ -54,18 +56,12 @@ shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
 shader_parameter/dimensions = Vector3(80, 24, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gff3n"]
-albedo_color = Color(0.78322023, 0.52710503, 0.17876545, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mfy8"]
-albedo_color = Color(0.77, 0.27617332, 0.20019999, 1)
-
 [node name="BaseLevel" type="Node3D" unique_id=565035297 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
 process_mode = 1
 script = ExtResource("1_fvqyr")
 PlayerSpawnPosition = NodePath("PlayerSpawnPoint")
 EndLevelZone = NodePath("EndLevelZone")
-Deadline = 50
+Deadline = 40
 playerGun = ExtResource("2_gff3n")
 InitialBullets = 3
 
@@ -78,6 +74,7 @@ unique_name_in_owner = true
 
 [node name="ShootingEnemy" parent="EnemyContainer" unique_id=395718396 instance=ExtResource("3_i7vav")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 10, 46)
+DETECTION_DIST = 35.0
 
 [node name="ShootingEnemy3" parent="EnemyContainer" unique_id=764112853 instance=ExtResource("3_i7vav")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 12, 49)
@@ -133,7 +130,7 @@ size = Vector3(24, 0.1, 80)
 material = SubResource("ShaderMaterial_p0x8g")
 
 [node name="Platforms" type="CSGCombiner3D" parent="LevelContainer" unique_id=1136842683]
-material_override = SubResource("StandardMaterial3D_gff3n")
+material_override = ExtResource("8_hj3xb")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=63278759]
@@ -311,7 +308,7 @@ transform = Transform3D(-4.371139e-08, 0.25881904, -0.9659258, 0, 0.9659258, 0.2
 size = Vector3(2, 0.2, 5)
 
 [node name="Walls" type="CSGCombiner3D" parent="LevelContainer" unique_id=1280136303]
-material_override = SubResource("StandardMaterial3D_6mfy8")
+material_override = ExtResource("8_armlc")
 use_collision = true
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=495425142]
@@ -414,7 +411,7 @@ height = 16.0
 sides = 32
 
 [node name="BulletPickup" parent="LevelContainer" unique_id=161911559 instance=ExtResource("7_p0x8g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 8.7, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 8.6, 16)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=353210223]
 transform = Transform3D(-0.4576944, -0.44455484, -0.76999146, 2.9802322e-08, -0.8660254, 0.50000006, -0.88910955, 0.22884722, 0.3963749, 0, 7, 0)

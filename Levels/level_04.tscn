@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://dbey7edekvbjg"]
+
+[ext_resource type="Script" uid="uid://6ngq1sv3vxxi" path="res://Levels/base_level.gd" id="1_yvass"]
+[ext_resource type="PackedScene" uid="uid://twhx8ljvwr02" path="res://Weapons/player_weapon.tscn" id="2_3mdkx"]
+[ext_resource type="PackedScene" uid="uid://r0ptg6eyddfk" path="res://Levels/end_level_zone.tscn" id="3_8w6fg"]
+[ext_resource type="PackedScene" uid="uid://cx04l753fp6y5" path="res://Enemy/shooting_enemy.tscn" id="3_np8y1"]
+[ext_resource type="PackedScene" uid="uid://xu6ynmpfl5so" path="res://Enemy/enemy.tscn" id="4_424uw"]
+[ext_resource type="Environment" uid="uid://cidvu8afblr6g" path="res://Common/Default_Env.tres" id="4_np8y1"]
+[ext_resource type="Material" uid="uid://cencw6wa8dla" path="res://Levels/Materials/Platform_def.tres" id="4_yvass"]
+[ext_resource type="Material" uid="uid://du28uqhxn7id5" path="res://Levels/Materials/Wall_def.tres" id="5_3mdkx"]
+[ext_resource type="PackedScene" uid="uid://c0ubycllm8rts" path="res://Levels/death_zone.tscn" id="8_424uw"]
+[ext_resource type="PackedScene" uid="uid://dc4ednytd0whv" path="res://Weapons/Bullet_Pickup/bullet_pickup.tscn" id="8_d7i4m"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i2tgm"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_utduo"]
+density = 0.5
+emission = Color(1, 1, 1, 1)
+
+[node name="Level_04" type="Node3D" unique_id=565035297 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
+process_mode = 1
+script = ExtResource("1_yvass")
+PlayerSpawnPosition = NodePath("PlayerSpawnPoint")
+EndLevelZone = NodePath("EndLevelZone")
+Deadline = 10
+playerGun = ExtResource("2_3mdkx")
+
+[node name="PlayerSpawnPoint" type="Marker3D" parent="." unique_id=992644609]
+unique_name_in_owner = true
+
+[node name="EnemyContainer" type="Node3D" parent="." unique_id=2109253794]
+unique_name_in_owner = true
+
+[node name="ShootingEnemy" parent="EnemyContainer" unique_id=395718396 instance=ExtResource("3_np8y1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Enemy" parent="EnemyContainer" unique_id=1352805964 instance=ExtResource("4_424uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="EndLevelZone" parent="." unique_id=96569969 instance=ExtResource("3_8w6fg")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
+
+[node name="LevelContainer" type="Node3D" parent="." unique_id=2008401292]
+unique_name_in_owner = true
+
+[node name="Platforms" type="CSGCombiner3D" parent="LevelContainer" unique_id=298669523]
+material_override = ExtResource("4_yvass")
+use_collision = true
+
+[node name="Ramp" type="CSGPolygon3D" parent="LevelContainer/Platforms" unique_id=1162411339]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -10)
+polygon = PackedVector2Array(0, 0, 20, 4, 20, 3.8, 0, -0.2)
+depth = 4.0
+
+[node name="Ramp2" type="CSGPolygon3D" parent="LevelContainer/Platforms" unique_id=984479120]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7, 4, -39)
+polygon = PackedVector2Array(0, 0, 32, 8, 32, 7.8, 0, -0.2)
+depth = 4.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1267844645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, -37)
+size = Vector3(4, 0.2, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=419121440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5, -44)
+size = Vector3(4, 0.2, 4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1127493373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 6, -42)
+size = Vector3(4, 0.2, 4)
+
+[node name="Walls" type="CSGCombiner3D" parent="LevelContainer" unique_id=1334026644]
+material_override = ExtResource("5_3mdkx")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1811355915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -35.95, 0)
+use_collision = true
+size = Vector3(20, 72, 20)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1771597444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.95, -37)
+use_collision = true
+size = Vector3(14, 44, 14)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1762036819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, -29.45, -37)
+use_collision = true
+size = Vector3(14, 83, 14)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=179220804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -32.95, -40)
+use_collision = true
+size = Vector3(8, 80, 8)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=821026326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -29.5, -40.5)
+radius = 2.0
+height = 79.0
+sides = 16
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1181889518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, -27.75, -25.5)
+radius = 2.0
+height = 82.5
+sides = 16
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1729547616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5, -27.375, -14.5)
+radius = 2.0
+height = 83.25
+sides = 16
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=979554870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, -26.875, -5.5)
+radius = 2.0
+height = 84.25
+sides = 16
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=239558121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, -29.5, -43.5)
+radius = 2.0
+height = 79.0
+sides = 16
+
+[node name="BulletPickup" parent="LevelContainer" unique_id=161911559 instance=ExtResource("8_d7i4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, 15.5, -5.5)
+
+[node name="Death_Zone" parent="LevelContainer" unique_id=1968610156 instance=ExtResource("8_424uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelContainer/Death_Zone" unique_id=438923995]
+shape = SubResource("WorldBoundaryShape3D_i2tgm")
+
+[node name="FogVolume" type="FogVolume" parent="LevelContainer/Death_Zone" unique_id=1922817988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -91.5, 0)
+size = Vector3(1000, 200, 1000)
+material = SubResource("FogMaterial_utduo")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2137876073]
+environment = ExtResource("4_np8y1")

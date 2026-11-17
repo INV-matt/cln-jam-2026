@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bb581w11vixus" path="res://Levels/level_02.tscn" id="4_wfmam"]
 [ext_resource type="PackedScene" uid="uid://ds7a8184rkknj" path="res://Levels/level_03.tscn" id="5_3x2pr"]
 [ext_resource type="Script" uid="uid://bytlo0ihj2sb" path="res://Common/level_selector.gd" id="5_qqq7b"]
+[ext_resource type="PackedScene" uid="uid://dbey7edekvbjg" path="res://Levels/level_04.tscn" id="6_s0mjk"]
 [ext_resource type="Script" uid="uid://kvu18inhp1hj" path="res://HUD/pause_menu.gd" id="7_xbodk"]
 [ext_resource type="Script" uid="uid://brvv3e2g3ge17" path="res://HUD/death_menu.gd" id="9_i8a1s"]
 [ext_resource type="Script" uid="uid://cwf1s6dpsowkk" path="res://HUD/main_menu.gd" id="11_34hby"]
@@ -24,7 +25,7 @@ texture = ExtResource("12_6wdal")
 [node name="Main" type="Node3D" unique_id=651417131]
 process_mode = 3
 script = ExtResource("1_af62b")
-LevelList = Array[PackedScene]([ExtResource("3_qqq7b"), ExtResource("2_0285w"), ExtResource("4_wfmam"), ExtResource("5_3x2pr")])
+LevelList = Array[PackedScene]([ExtResource("3_qqq7b"), ExtResource("2_0285w"), ExtResource("4_wfmam"), ExtResource("5_3x2pr"), ExtResource("6_s0mjk")])
 
 [node name="PlayerContainer" type="Node" parent="." unique_id=504309912]
 process_mode = 1
@@ -39,45 +40,88 @@ unique_name_in_owner = true
 layer = 100
 script = ExtResource("4_0285w")
 
-[node name="MainBox" type="MarginContainer" parent="HUD" unique_id=1874448324]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="MainBox" type="Control" parent="HUD" unique_id=882222553]
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+mouse_filter = 1
 
 [node name="Bullets" type="Label" parent="HUD/MainBox" unique_id=32174282]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 242.0
+offset_bottom = 56.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 32
 text = "BULLETS: 999"
 
-[node name="Time" type="RichTextLabel" parent="HUD/MainBox" unique_id=1630318678]
+[node name="Control" type="Control" parent="HUD/MainBox" unique_id=1149849881]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = -20.0
+grow_horizontal = 2
+
+[node name="Sec" type="RichTextLabel" parent="HUD/MainBox/Control" unique_id=1630318678]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -81.0
+offset_bottom = 79.0
+grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1, 0.7)
-theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/mono_font_size = 65
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/mono_font_size = 64
 bbcode_enabled = true
-text = "[color=#00ff00][code]67.104[/code][/color]"
+text = "[color=#00ff00]67[/color]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Cent" type="RichTextLabel" parent="HUD/MainBox/Control" unique_id=1979851764]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 62.0
+offset_bottom = 79.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/mono_font_size = 64
+bbcode_enabled = true
+text = "[color=#00ff00].14[/color]"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
 [node name="Enemies" type="Label" parent="HUD/MainBox" unique_id=571722977]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -178.0
+offset_bottom = 40.0
+grow_horizontal = 0
 size_flags_horizontal = 10
 size_flags_vertical = 0
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 32
 text = "ENEMIES: 4"
 horizontal_alignment = 2

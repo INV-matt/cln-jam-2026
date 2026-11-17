@@ -3,7 +3,7 @@ class_name ShootingEnemy
 
 
 @export_custom(PROPERTY_HINT_NONE, "suffix:deg/s") var ROT_SPEED: float = 30
-@export var DETECTION_DIST: float = 20.
+@export var DETECTION_DIST: float = 30.
 @export var DAMAGE: float = 100
 
 @export var BulletTrail: PackedScene
@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
   match state:
     State.IDLE: _handle_idle(delta)
     State.FOLLOWING: _handle_following(delta)
+    State.DESTROYED: pass
 
 
 func _handle_idle(delta: float) -> void:
@@ -46,7 +47,7 @@ func _handle_following(delta: float) -> void:
 
   var horizontal_distance = Vector2(dir.x, dir.z).length()
   var target_pitch = - atan2(dir.y, horizontal_distance)
-  # target_pitch = clampf(target_pitch, deg_to_rad(-30), deg_to_rad(70))
+  if dir.y < -.7: target_pitch = 0 # circa sqrt2 / 2
   %TurretHeadPitchPivot.rotation.x = rotate_toward(%TurretHeadPitchPivot.rotation.x, target_pitch, ROT_SPEED * delta)
 
 

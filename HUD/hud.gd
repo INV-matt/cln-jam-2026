@@ -2,7 +2,8 @@ extends CanvasLayer
 class_name HUD
 
 @onready var lbl_Bullets: Label = %Bullets
-@onready var lbl_Time: RichTextLabel = %Time
+@onready var lbl_Sec: RichTextLabel = %Sec
+@onready var lbl_Cent: RichTextLabel = %Cent
 @onready var lbl_Enemies: Label = %Enemies
 
 func _ready() -> void:
@@ -15,12 +16,17 @@ func setTime(value: float) -> void:
   value = abs(value)
   var sec: int = floor(value)
   var cs: float = floor((value - sec) * 100)
-  lbl_Time.text = "[color=%s][code]%02d:%02d[/code][/color]" % [col, sec, cs] # A QUANTO PARE IL MENO È UNA FUCKING CIFRA
+  lbl_Sec.text = "[color=%s]%02d[/color]" % [col, sec]
+  lbl_Cent.text = "[color=%s].%02d[/color]" % [col, cs]
 
 
 func showTime(value: bool) -> void:
-  if value: lbl_Time.show()
-  else: lbl_Time.hide()
+  if value:
+    lbl_Sec.show()
+    lbl_Cent.show()
+  else:
+    lbl_Sec.hide()
+    lbl_Cent.hide()
 
 func setEnemies(value: int) -> void:
   if value <= 0: lbl_Enemies.hide()

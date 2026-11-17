@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" uid="uid://6ngq1sv3vxxi" path="res://Levels/base_level.gd" id="1_x5tb4"]
 [ext_resource type="PackedScene" uid="uid://r0ptg6eyddfk" path="res://Levels/end_level_zone.tscn" id="3_6mfy8"]
-[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="4_bsxbt"]
+[ext_resource type="Material" uid="uid://cencw6wa8dla" path="res://Levels/Materials/Platform_def.tres" id="4_1nift"]
+[ext_resource type="Material" uid="uid://du28uqhxn7id5" path="res://Levels/Materials/Wall_def.tres" id="4_6mfy8"]
+[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Shaders/garden0_base_plane.gdshader" id="4_bsxbt"]
 [ext_resource type="PackedScene" uid="uid://c0ubycllm8rts" path="res://Levels/death_zone.tscn" id="5_1nift"]
-[ext_resource type="Environment" uid="uid://cidvu8afblr6g" path="res://Common/Default_Env.tres" id="5_6mfy8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i2tgm"]
 render_priority = 0
 shader = ExtResource("4_bsxbt")
-shader_parameter/color = Color(0.30620345, 0.4526108, 0.794841, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.086, 0.161, 0.345, 1)
+shader_parameter/grid_color = Color(0.482, 0.69, 0.773, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 0.5
 shader_parameter/dimensions = Vector3(10, 20, 50)
@@ -18,8 +19,8 @@ shader_parameter/dimensions = Vector3(10, 20, 50)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_utduo"]
 render_priority = 0
 shader = ExtResource("4_bsxbt")
-shader_parameter/color = Color(0.30620345, 0.4526108, 0.794841, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.086, 0.161, 0.345, 1)
+shader_parameter/grid_color = Color(0.482, 0.69, 0.773, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
 shader_parameter/dimensions = Vector3(60, 20, 1)
@@ -27,8 +28,8 @@ shader_parameter/dimensions = Vector3(60, 20, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1nift"]
 render_priority = 0
 shader = ExtResource("4_bsxbt")
-shader_parameter/color = Color(0.30620345, 0.4526108, 0.794841, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.086, 0.161, 0.345, 1)
+shader_parameter/grid_color = Color(0.482, 0.69, 0.773, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
 shader_parameter/dimensions = Vector3(10, 20, 1)
@@ -36,17 +37,11 @@ shader_parameter/dimensions = Vector3(10, 20, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hv8fo"]
 render_priority = 0
 shader = ExtResource("4_bsxbt")
-shader_parameter/color = Color(0.30620345, 0.4526108, 0.794841, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.086, 0.161, 0.345, 1)
+shader_parameter/grid_color = Color(0.482, 0.69, 0.773, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
 shader_parameter/dimensions = Vector3(50, 20, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2tgm"]
-albedo_color = Color(0.53050506, 0.8418249, 0.7026004, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7saq"]
-albedo_color = Color(0.46091557, 0.2816886, 0.41597745, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1nift"]
 size = Vector3(52, 1, 66)
@@ -115,7 +110,7 @@ size = Vector3(50, 20, 10)
 material = SubResource("ShaderMaterial_hv8fo")
 
 [node name="Platforms" type="CSGCombiner3D" parent="LevelContainer" unique_id=1732315169]
-material_override = SubResource("StandardMaterial3D_i2tgm")
+material_override = ExtResource("4_1nift")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1944515734]
@@ -208,7 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 1.0000002, -50, -22.043
 size = Vector3(10, 0.1, 7)
 
 [node name="Walls" type="CSGCombiner3D" parent="LevelContainer" unique_id=73214583]
-material_override = SubResource("StandardMaterial3D_l7saq")
+material_override = ExtResource("4_6mfy8")
 use_collision = true
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1510601398]
@@ -267,8 +262,11 @@ debug_color = Color(0.99723953, 0, 0.17991892, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 mesh = SubResource("PlaneMesh_i2tgm")
 
-[node name="Env" type="WorldEnvironment" parent="." unique_id=1161879259]
-environment = ExtResource("5_6mfy8")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1577607293]
-transform = Transform3D(0.6830127, 0.46209678, 0.56565034, -0.18301271, -0.64145666, 0.7450099, 0.7071068, -0.61237246, -0.35355353, 0, 6, 0)
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071068, 0, -0.7071068, 0.7071067, 0, 29, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1480340950]
+transform = Transform3D(1, 0, 0, 0, -0.3630195, 0.93178153, 0, -0.93178153, -0.3630195, -50, -9, 100)
+light_energy = 30.0
+spot_range = 18.699888
+spot_angle = 15.845476

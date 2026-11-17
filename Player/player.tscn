@@ -2,13 +2,17 @@
 
 [ext_resource type="Script" uid="uid://doin3x8odmcwg" path="res://Player/player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://ct71bl052ct3a" path="res://Weapons/player_knife.tscn" id="2_btcbx"]
-[ext_resource type="Texture2D" uid="uid://cfghur0m5tgl6" path="res://HUD/Assets/crosshair.svg" id="4_k53q1"]
+[ext_resource type="Texture2D" uid="uid://blql5j4kwyp5p" path="res://HUD/Assets/crosshair_64.png" id="3_btcbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i2tgm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i2tgm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_i2tgm"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_btcbx"]
+auto_exposure_enabled = true
+dof_blur_far_distance = 200.0
 
 [node name="Player" type="CharacterBody3D" unique_id=1075427188 node_paths=PackedStringArray("KNIFE")]
 collision_layer = 2
@@ -46,7 +50,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0)
 cull_mask = 1048573
+attributes = SubResource("CameraAttributesPractical_btcbx")
 current = true
+fov = 90.0
+far = 500.0
 
 [node name="WeaponRC" type="RayCast3D" parent="Head/PlayerCamera" unique_id=1876357329]
 unique_name_in_owner = true
@@ -83,6 +90,9 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="Crosshair/CenterContainer" unique_id=2086726643]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("4_k53q1")
+texture = ExtResource("3_btcbx")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="AudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1320498395]
+unique_name_in_owner = true

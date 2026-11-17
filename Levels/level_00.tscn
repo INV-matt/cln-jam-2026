@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://6ngq1sv3vxxi" path="res://Levels/base_level.gd" id="1_0rc55"]
 [ext_resource type="PackedScene" uid="uid://r0ptg6eyddfk" path="res://Levels/end_level_zone.tscn" id="2_mav1t"]
-[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="3_rtvib"]
+[ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Shaders/garden0_base_plane.gdshader" id="3_rtvib"]
 [ext_resource type="Environment" uid="uid://cidvu8afblr6g" path="res://Common/Default_Env.tres" id="4_mav1t"]
+[ext_resource type="Material" uid="uid://cencw6wa8dla" path="res://Levels/Materials/Platform_def.tres" id="4_rtvib"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dilhk"]
 render_priority = 0
@@ -13,9 +14,6 @@ shader_parameter/grid_color = Color(0.482, 0.69, 0.773, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 4.0
 shader_parameter/dimensions = Vector3(50, 50, 50)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mav1t"]
-albedo_color = Color(0.78322023, 0.52710503, 0.17876545, 1)
 
 [node name="Level_00" type="Node3D" unique_id=1363919234 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
 script = ExtResource("1_0rc55")
@@ -34,50 +32,50 @@ Height = 30.0
 [node name="LevelContainer" type="Node3D" parent="." unique_id=817641531]
 unique_name_in_owner = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer" unique_id=848205078]
+[node name="Level_Box" type="CSGBox3D" parent="LevelContainer" unique_id=848205078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 14, 0)
 use_collision = true
 flip_faces = true
 size = Vector3(50, 50, 50)
 material = SubResource("ShaderMaterial_dilhk")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="LevelContainer" unique_id=1792308852]
-material_override = SubResource("StandardMaterial3D_mav1t")
+[node name="Platforms" type="CSGCombiner3D" parent="LevelContainer" unique_id=1792308852]
+material_override = ExtResource("4_rtvib")
 use_collision = true
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=1676780920]
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1676780920]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.6635132, 0)
 size = Vector3(5, 0.32702637, 4)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=138254693]
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=138254693]
 transform = Transform3D(1, 0, 0, 0, 0.8660253, -0.49999997, 0, 0.49999997, 0.8660253, 1, -6.6383867, 11.804999)
 size = Vector3(5, 0.32702637, 19)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=875597412]
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=875597412]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -0.6635132, 0)
 size = Vector3(4, 0.32702637, 4)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=1993255184]
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1993255184]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, -0.6635132, 11)
 size = Vector3(4, 0.32702637, 4)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=526006099]
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=526006099]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 22, -0.6635132, 14)
 size = Vector3(4, 0.32702637, 4)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=1686713988]
+[node name="CSGBox3D6" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1686713988]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27, 0.33648682, 6)
 size = Vector3(4, 0.32702637, 4)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=941056930]
+[node name="CSGBox3D7" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=941056930]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27, 1.3364868, -5)
 size = Vector3(4, 0.32702637, 4)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=1819370041]
+[node name="CSGBox3D8" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1819370041]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26, 2.833, -13)
 size = Vector3(4, 0.32702637, 4)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=431666977]
+[node name="CSGBox3D9" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=431666977]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 38, 4.336487, -17)
 size = Vector3(6, 0.32702637, 10)
 

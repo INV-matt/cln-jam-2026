@@ -208,7 +208,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ims4r")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i2tgm"]
-radius = 25.0
+radius = 30.0
 
 [sub_resource type="Animation" id="Animation_wf2ms"]
 resource_name = "Destroyed"
@@ -409,6 +409,7 @@ collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea" unique_id=1939228468]
 shape = SubResource("SphereShape3D_i2tgm")
+debug_color = Color(0.63699985, 0.33999997, 1, 0.7372549)
 
 [node name="ShootingTimer" type="Timer" parent="." unique_id=1905526593]
 unique_name_in_owner = true

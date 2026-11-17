@@ -6,6 +6,7 @@ class_name PlayerWeapon
 @export var animPlayer: AnimationPlayer
 @export var audioPlayer: AudioStreamPlayer3D
 @export var weaponRC: RayCast3D
+@export var shotSound: AudioStream
 
 @export_group("Stats")
 @export var Damage: float = 100
@@ -56,23 +57,10 @@ func _on_trigger_pressed() -> void:
 
 func _on_trigger_released() -> void: pass
 
-#func can_reload() -> bool: return remainingBullets < InitialBullets
-
-# func _on_reload_pressed() -> void:
-#   if animPlayer.current_animation == "Reload": return
-#   if !can_reload(): return
-
-#   playAnim("Reload")
-#   queueAnim("RESET")
-
-#   await animPlayer.animation_finished
-  
-#   remainingMags -= 1
-#   remainingBullets = InitialBullets
-
 
 func shoot() -> void:
   playAnim("Shoot")
+  playSound(shotSound)
   queueAnim("RESET")
 
   weaponRC.target_position = Vector3(0, 0, -1000)
@@ -97,6 +85,9 @@ func playAnim(anim: String) -> void:
 
 func queueAnim(anim: String) -> void: animPlayer.queue(anim)
 
+func playSound(sound: AudioStream) -> void:
+  if audioPlayer.stream != sound: audioPlayer.stream = sound
+  audioPlayer.play()
 
 func showTracers(target: Vector3) -> void:
   if muzzle == null: return

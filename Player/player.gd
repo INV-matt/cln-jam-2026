@@ -201,6 +201,8 @@ func handle_gun_start_lvl(gun: PackedScene, bullets: int) -> void:
   currentGun.InitialBullets = bullets
   currentGun.remainingBullets = bullets
   currentGun.show()
+
+  print(currentGun.remainingBullets)
   
   selected_weapon = 1
 
@@ -217,7 +219,11 @@ func handle_knife_start_lvl() -> void:
 func handle_knife_end_lvl() -> void:
   pass
 
+var _pickup_sound = preload("res://Weapons/Bullet_Pickup/Pickup_Bullet.wav")
 func pickup_bullet(bullets: int) -> bool:
   if currentGun == null: return false
   currentGun.remainingBullets += bullets
+  %AudioPlayer.stream = _pickup_sound
+  $AudioPlayer.play()
+  print(currentGun.remainingBullets)
   return true

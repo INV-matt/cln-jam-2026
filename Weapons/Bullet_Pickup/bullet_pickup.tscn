@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dc4ednytd0whv"]
+
+[ext_resource type="Script" uid="uid://dvawajbvhs52h" path="res://Weapons/Bullet_Pickup/bullet_pickup.gd" id="1_iueco"]
+[ext_resource type="PackedScene" uid="uid://ffb378v8ddqs" path="res://Weapons/Bullet_Pickup/Bullet_Pickup.glb" id="2_pxrnl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i2tgm"]
+radius = 0.3
+
+[node name="BulletPickup" type="Node3D" unique_id=161911559]
+script = ExtResource("1_iueco")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=570735665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="PickUpArea" type="Area3D" parent="Node3D" unique_id=2073585438]
+unique_name_in_owner = true
+collision_layer = 16
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/PickUpArea" unique_id=1295303730]
+shape = SubResource("SphereShape3D_i2tgm")
+
+[node name="Mesh" type="Node3D" parent="Node3D" unique_id=660123465]
+unique_name_in_owner = true
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, -0.3, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D/Mesh" unique_id=2038133638]
+transform = Transform3D(0.83333325, 0, 0, 0, 0.83333325, 0, 0, 0, 0.83333325, 0, 0.71473485, 0)
+light_color = Color(1, 0.8666667, 0, 1)
+light_energy = 10.0
+omni_range = 1.5
+
+[node name="Bullet_Pickup" parent="Node3D/Mesh" unique_id=1196093366 instance=ExtResource("2_pxrnl")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 0.99999994, 0, -0.99999994, 0, -4.3711385e-08, 0, 0, 0)

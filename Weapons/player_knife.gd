@@ -8,7 +8,7 @@ class_name PlayerKnife
 
 @export_group("Stats")
 @export var Damage: float = 100
-@export var FireRate: float = .5
+@export var FireRate: float = 1
 @export var CanShoot: bool = true
 @export var AutoFire: bool = true
 @export var HitDst: float = 3
@@ -16,6 +16,9 @@ class_name PlayerKnife
 
 func _ready() -> void:
   for n in find_children("*", "MeshInstance3D"): (n as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+
+func _process(delta: float) -> void:
+  if AutoFire && CanShoot && trigger_pressed: _on_trigger_pressed()
 
 var trigger_pressed := false:
   set(v):
