@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://r0ptg6eyddfk" path="res://Levels/end_level_zone.tscn" id="2_2o7fp"]
 [ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="3_lkd0j"]
 [ext_resource type="PackedScene" uid="uid://xu6ynmpfl5so" path="res://Enemy/enemy.tscn" id="4_2o7fp"]
-[ext_resource type="Environment" uid="uid://cidvu8afblr6g" path="res://Common/Default_Env.tres" id="5_ocwms"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xo7k0"]
 resource_name = "Level_Ground"
@@ -48,8 +47,8 @@ shadow_mesh = SubResource("ArrayMesh_5ly20")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ykxcy"]
 render_priority = 0
 shader = ExtResource("3_lkd0j")
-shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.086, 0.161, 0.345, 1)
+shader_parameter/grid_color = Color(0.482, 0.69, 0.773, 1)
 shader_parameter/grid_width = 0.050000002375
 shader_parameter/grid_dim = 2.0
 shader_parameter/dimensions = Vector3(100, 100, 100)
@@ -434,7 +433,7 @@ metadata/_custom_type_script = "uid://6ngq1sv3vxxi"
 
 [node name="PlayerSpawnPoint" type="Marker3D" parent="." unique_id=1696348038]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, 0)
 
 [node name="EndLevelZone" parent="." unique_id=96569969 instance=ExtResource("2_2o7fp")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 30, 7.5, 30)
@@ -554,6 +553,3 @@ unique_name_in_owner = true
 
 [node name="Enemy" parent="EnemyContainer" unique_id=1352805964 instance=ExtResource("4_2o7fp")]
 transform = Transform3D(1.9106855e-15, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -1, -1, 0, -4.371139e-08, 12, 2, 19)
-
-[node name="Env" type="WorldEnvironment" parent="." unique_id=1079899446]
-environment = ExtResource("5_ocwms")

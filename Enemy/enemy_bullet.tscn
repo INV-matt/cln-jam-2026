@@ -6,15 +6,50 @@
 radius = 0.005
 height = 0.01
 
+[sub_resource type="Curve" id="Curve_rfj1v"]
+_data = [Vector2(0, 1), 0.0, -1.2532994, 0, 0, Vector2(1, 0), -0.05019484, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utduo"]
+cull_mode = 2
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.72, 0.72, 1)
+emission_energy_multiplier = 1.5
+stencil_flags = 2
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_i2tgm"]
+material = SubResource("StandardMaterial3D_utduo")
+shape = 0
+size = 0.1
+sections = 8
+curve = SubResource("Curve_rfj1v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ijxx3"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.050000012, 0.050000012, 1)
+emission_energy_multiplier = 0.5
+rim_enabled = true
+rim = 0.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i2tgm"]
+material = SubResource("StandardMaterial3D_ijxx3")
 radius = 0.05
-height = 0.2
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfj1v"]
+shading_mode = 0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ijxx3"]
+material = SubResource("StandardMaterial3D_rfj1v")
+flip_faces = true
+radius = 0.055
+height = 0.12
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utduo"]
-radius = 0.03857422
-height = 0.13867188
+radius = 0.04
+height = 0.08
 
 [node name="EnemyBullet" type="CharacterBody3D" unique_id=120914759]
 collision_layer = 8
@@ -26,10 +61,16 @@ SPEED = 750
 transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_i2tgm")
 
+[node name="Trail" type="MeshInstance3D" parent="." unique_id=1947087915]
+transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.3711385e-08, -4.371139e-08, 4.371139e-08, -1, 0, 0, 0, 0.8)
+mesh = SubResource("RibbonTrailMesh_i2tgm")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=428897454]
 transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_utduo")
 mesh = SubResource("CapsuleMesh_i2tgm")
+
+[node name="Rim" type="MeshInstance3D" parent="MeshInstance3D" unique_id=983451651]
+mesh = SubResource("CapsuleMesh_ijxx3")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=273759135]
 collision_layer = 8

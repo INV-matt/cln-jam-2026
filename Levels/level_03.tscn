@@ -4,25 +4,34 @@
 [ext_resource type="PackedScene" uid="uid://twhx8ljvwr02" path="res://Weapons/player_weapon.tscn" id="2_gff3n"]
 [ext_resource type="PackedScene" uid="uid://r0ptg6eyddfk" path="res://Levels/end_level_zone.tscn" id="3_f3lte"]
 [ext_resource type="PackedScene" uid="uid://cx04l753fp6y5" path="res://Enemy/shooting_enemy.tscn" id="3_i7vav"]
-[ext_resource type="Environment" uid="uid://cidvu8afblr6g" path="res://Common/Default_Env.tres" id="4_gff3n"]
 [ext_resource type="PackedScene" uid="uid://xu6ynmpfl5so" path="res://Enemy/enemy.tscn" id="4_i7vav"]
 [ext_resource type="Shader" uid="uid://b50s4ge3tyscn" path="res://Levels/Gardens/garden0_base_plane.gdshader" id="6_5wetp"]
+[ext_resource type="Shader" uid="uid://cc0tqd1r807al" path="res://Levels/Gardens/transparent_bp.gdshader" id="7_armlc"]
 [ext_resource type="PackedScene" uid="uid://dc4ednytd0whv" path="res://Weapons/bullet_pickup.tscn" id="7_p0x8g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wdal"]
 render_priority = 0
 shader = ExtResource("6_5wetp")
-shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
+shader_parameter/color = Color(0.08627451, 0.16078432, 0.34509805, 1)
+shader_parameter/grid_color = Color(0.48235294, 0.6901961, 0.77254903, 1)
+shader_parameter/grid_width = 0.05
+shader_parameter/grid_dim = 2.0
+shader_parameter/dimensions = Vector3(80, 40, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k6wck"]
+render_priority = 0
+shader = ExtResource("7_armlc")
+shader_parameter/color = Color(0.3019608, 0.44705883, 0.7921569, 0.29803923)
 shader_parameter/grid_color = Color(1, 1, 1, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
-shader_parameter/dimensions = Vector3(60, 40, 1)
+shader_parameter/dimensions = Vector3(80, 40, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hj3xb"]
 render_priority = 0
 shader = ExtResource("6_5wetp")
-shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.086, 0.161, 0.345, 1)
+shader_parameter/grid_color = Color(0.482, 0.69, 0.773, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
 shader_parameter/dimensions = Vector3(24, 40, 1)
@@ -30,35 +39,35 @@ shader_parameter/dimensions = Vector3(24, 40, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_armlc"]
 render_priority = 0
 shader = ExtResource("6_5wetp")
-shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.08627451, 0.16078432, 0.34509805, 1)
+shader_parameter/grid_color = Color(0.48235294, 0.6901961, 0.77254903, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
-shader_parameter/dimensions = Vector3(60, 24, 1)
+shader_parameter/dimensions = Vector3(80, 24, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p0x8g"]
 render_priority = 0
 shader = ExtResource("6_5wetp")
-shader_parameter/color = Color(0.30588236, 0.4509804, 0.79607844, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.087372415, 0.16069657, 0.34443083, 1)
+shader_parameter/grid_color = Color(0.48235294, 0.6901961, 0.77254903, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 2.0
-shader_parameter/dimensions = Vector3(60, 24, 1)
+shader_parameter/dimensions = Vector3(80, 24, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gff3n"]
-albedo_color = Color(0.80801755, 0.5190456, 0.37639648, 1)
+albedo_color = Color(0.78322023, 0.52710503, 0.17876545, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mfy8"]
-albedo_color = Color(0.45, 0.198, 0.29040003, 1)
+albedo_color = Color(0.77, 0.27617332, 0.20019999, 1)
 
 [node name="BaseLevel" type="Node3D" unique_id=565035297 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
 process_mode = 1
 script = ExtResource("1_fvqyr")
 PlayerSpawnPosition = NodePath("PlayerSpawnPoint")
 EndLevelZone = NodePath("EndLevelZone")
-Deadline = 10
+Deadline = 50
 playerGun = ExtResource("2_gff3n")
-InitialBullets = 2
+InitialBullets = 3
 
 [node name="PlayerSpawnPoint" type="Marker3D" parent="." unique_id=992644609]
 unique_name_in_owner = true
@@ -70,15 +79,22 @@ unique_name_in_owner = true
 [node name="ShootingEnemy" parent="EnemyContainer" unique_id=395718396 instance=ExtResource("3_i7vav")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 10, 46)
 
+[node name="ShootingEnemy3" parent="EnemyContainer" unique_id=764112853 instance=ExtResource("3_i7vav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 12, 49)
+
 [node name="ShootingEnemy2" parent="EnemyContainer" unique_id=1612585600 instance=ExtResource("3_i7vav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 5, 41)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 5, 37)
 
 [node name="Enemy" parent="EnemyContainer" unique_id=1352805964 instance=ExtResource("4_i7vav")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 10, 23)
 
+[node name="Enemy2" parent="EnemyContainer" unique_id=204411917 instance=ExtResource("4_i7vav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, 60)
+
 [node name="EndLevelZone" parent="." unique_id=96569969 instance=ExtResource("3_f3lte")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 8, 73)
+Height = 16.0
 
 [node name="LevelContainer" type="Node3D" parent="." unique_id=2008401292]
 unique_name_in_owner = true
@@ -87,23 +103,33 @@ unique_name_in_owner = true
 use_collision = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Level" unique_id=1524148254]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27)
-size = Vector3(40, 0.1, 60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37)
+size = Vector3(40, 0.1, 80)
 material = SubResource("ShaderMaterial_6wdal")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="LevelContainer/Level" unique_id=1902797026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24, 37)
+size = Vector3(40, 0.1, 80)
+material = SubResource("ShaderMaterial_k6wck")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Level" unique_id=1663949859]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 12, -3)
 size = Vector3(40, 0.1, 24)
 material = SubResource("ShaderMaterial_hj3xb")
 
+[node name="CSGBox3D7" type="CSGBox3D" parent="LevelContainer/Level" unique_id=53076165]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 12, 77)
+size = Vector3(40, 0.1, 24)
+material = SubResource("ShaderMaterial_hj3xb")
+
 [node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Level" unique_id=962243904]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 20, 12, 27)
-size = Vector3(24, 0.1, 60)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 20, 12, 37)
+size = Vector3(24, 0.1, 80)
 material = SubResource("ShaderMaterial_armlc")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Level" unique_id=1744144013]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -20, 12, 27)
-size = Vector3(24, 0.1, 60)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -19.999224, 12, 36.92614)
+size = Vector3(24, 0.1, 80)
 material = SubResource("ShaderMaterial_p0x8g")
 
 [node name="Platforms" type="CSGCombiner3D" parent="LevelContainer" unique_id=1136842683]
@@ -119,21 +145,16 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, 0, -0.15
 operation = 2
 size = Vector3(3, 1, 3)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=495425142]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 13.5)
-size = Vector3(10, 6, 3)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D2" unique_id=169448649]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 3.5, 2.853, -1.662)
-operation = 2
-size = Vector3(3, 0.2, 1)
-
 [node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1592121550]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 7, 22.5)
 size = Vector3(2, 0.2, 9)
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=549273658]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 8, 33)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 8, 34)
+size = Vector3(2, 0.2, 9)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1612868111]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3, 8, 40)
 size = Vector3(2, 0.2, 9)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1589402784]
@@ -160,6 +181,22 @@ size = Vector3(2, 0.2, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.521094, 0)
 size = Vector3(0.4, 9, 0.4)
 
+[node name="CSGBox3D13" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=931300988]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 14, 9.5, 43)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D13" unique_id=1450723009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.021094, 0)
+size = Vector3(0.4, 10, 0.4)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1130831752]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 10.5, 53)
+size = Vector3(2, 0.2, 5)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D14" unique_id=1518280052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.521094, 0)
+size = Vector3(0.4, 11, 0.4)
+
 [node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1224441595]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 7, 26)
 size = Vector3(2, 0.2, 6)
@@ -172,9 +209,119 @@ size = Vector3(2, 0.2, 4)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18.5, 9, 26)
 size = Vector3(2, 0.2, 3)
 
+[node name="CSGBox3D15" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1359226668]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -17, 12, 49)
+size = Vector3(2, 0.2, 6)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=13483296]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.999224, 3.9999995, 55.92614)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D20" unique_id=1352033569]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, -1, -0.5, 0)
+size = Vector3(1.2, 0.2, 4)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=641219130]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.999224, 4.9999995, 57.92614)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D27" unique_id=44057681]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, -1, -0.5, 0)
+size = Vector3(1.2, 0.2, 4)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=705418259]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.999224, 5.9999995, 59.92614)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D29" unique_id=389173277]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, -1, -0.5, 0)
+size = Vector3(1.2, 0.2, 4)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=2049101875]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.999224, 6.9999995, 61.92614)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D30" unique_id=846811649]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, -1, -0.5, 0)
+size = Vector3(1.2, 0.2, 4)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1628219661]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, 8, 64)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D31" unique_id=729906655]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, -1.0738602, -0.5000005, -0.0007762909)
+size = Vector3(1.2, 0.2, 4)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=2050080246]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.999224, 1.9999995, 51.92614)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D21" unique_id=1898349532]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, -1, -0.5, 0)
+size = Vector3(1.2, 0.2, 4)
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=115552368]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -19, 1, 50)
+size = Vector3(2, 0.2, 2)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D32" unique_id=568632179]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, -1, -0.5, 0)
+size = Vector3(1.2, 0.2, 2)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1542691785]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.999224, 2.9999995, 53.92614)
+size = Vector3(2, 0.2, 4)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D28" unique_id=197776018]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, -1, -0.5, 0)
+size = Vector3(1.2, 0.2, 4)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=456902991]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19, 13, 58)
+size = Vector3(10, 0.2, 2)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1219257713]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16, 8, 73)
+size = Vector3(8, 0.2, 8)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=370739124]
+transform = Transform3D(-3.7855173e-08, 0.5, -0.8660254, 2.1855694e-08, 0.8660254, 0.5, 1, 0, -4.371139e-08, -6.8349366, 6.75, 72.5)
+size = Vector3(3, 0.2, 5)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=1222732521]
+transform = Transform3D(-3.7855173e-08, 0.5, -0.8660254, 2.1855694e-08, 0.8660254, 0.5, 1, 0, -4.371139e-08, 0.16025376, 3.8660254, 74.5)
+size = Vector3(3, 0.2, 4)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=811500009]
+transform = Transform3D(-3.7855173e-08, 0.5, -0.8660254, 2.1855694e-08, 0.8660254, 0.5, 1, 0, -4.371139e-08, 7.155444, 0.9820509, 71.5)
+size = Vector3(3, 0.2, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=785769510]
+transform = Transform3D(-4.2221956e-08, 0.5, -0.86602527, -1.1313338e-08, 0.86602527, 0.5, 1, 3.090862e-08, -3.090862e-08, 3.637, 3.206, 62.5)
+size = Vector3(7, 0.2, 13.625122)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Platforms/CSGBox3D2" unique_id=1369383804]
+transform = Transform3D(1, 0, 5.8264504e-13, 0, 0.8660254, -0.5, 3.5527137e-15, 0.5, 0.8660254, 0, -0.15167904, 6.8487144)
+operation = 2
+size = Vector3(15, 1, 3)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="LevelContainer/Platforms" unique_id=194672656]
+transform = Transform3D(-4.371139e-08, 0.25881904, -0.9659258, 0, 0.9659258, 0.25881904, 1, 1.131334e-08, -4.222196e-08, -6.5, 11.5, 49)
+size = Vector3(2, 0.2, 5)
+
 [node name="Walls" type="CSGCombiner3D" parent="LevelContainer" unique_id=1280136303]
 material_override = SubResource("StandardMaterial3D_6mfy8")
 use_collision = true
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=495425142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 13.5)
+size = Vector3(10, 6, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/Walls/CSGBox3D14" unique_id=169448649]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 3.5, 2.853, -1.662)
+operation = 2
+size = Vector3(3, 0.2, 1)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1035893846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, 18.5)
@@ -196,31 +343,79 @@ size = Vector3(4, 10, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 8, 23)
 size = Vector3(6, 4, 4)
 
+[node name="CSGBox3D8" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=942786192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 8, 46)
+size = Vector3(9, 16, 4)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1700329475]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 5, 52.5)
+size = Vector3(13, 10, 2)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1578005188]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 3, 62.5)
+size = Vector3(7, 6, 2)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=183440823]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.5, 5, 66.5)
+size = Vector3(13, 10, 1)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1529910784]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.5, 7.5, 72)
+size = Vector3(10, 5, 1)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1690922106]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.5, 2.5, 68.5)
+size = Vector3(3, 5, 1)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=914431620]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.500001, 2.5, 75)
+size = Vector3(4, 5, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=2071194925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 8, 46)
+size = Vector3(4, 16, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=794258271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 11, 46)
+size = Vector3(4, 10, 4)
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1952848481]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, 41)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, 37)
+size = Vector3(4, 5, 4)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1895062038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, 37)
 size = Vector3(4, 5, 4)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=505104083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5, 46)
 size = Vector3(2, 10, 2)
 
+[node name="CSGBox3D16" type="CSGBox3D" parent="LevelContainer/Walls" unique_id=1846022860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2, 60)
+size = Vector3(2, 4, 2)
+
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1230383311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 8, 33)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 8, 34)
+radius = 2.0
+height = 16.0
+sides = 32
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1662788350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 8, 46)
 radius = 2.0
 height = 16.0
 sides = 32
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="LevelContainer/Walls" unique_id=1849346945]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 8, 33)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 8, 34)
 radius = 2.0
 height = 16.0
 sides = 32
 
 [node name="BulletPickup" parent="LevelContainer" unique_id=161911559 instance=ExtResource("7_p0x8g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 9.2, 36)
-
-[node name="Env" type="WorldEnvironment" parent="." unique_id=677469241]
-environment = ExtResource("4_gff3n")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 8.7, 16)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=353210223]
-transform = Transform3D(-0.50000006, -0.43301275, -0.74999994, 1.490116e-08, -0.8660254, 0.50000006, -0.8660254, 0.25000012, 0.4330127, 0, 7, 0)
+transform = Transform3D(-0.4576944, -0.44455484, -0.76999146, 2.9802322e-08, -0.8660254, 0.50000006, -0.88910955, 0.22884722, 0.3963749, 0, 7, 0)
+light_color = Color(0.95566994, 0.9741679, 0.9980627, 1)

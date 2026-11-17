@@ -8,14 +8,14 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dilhk"]
 render_priority = 0
 shader = ExtResource("3_rtvib")
-shader_parameter/color = Color(0.30620345, 0.4526108, 0.794841, 1)
-shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.086, 0.161, 0.345, 1)
+shader_parameter/grid_color = Color(0.482, 0.69, 0.773, 1)
 shader_parameter/grid_width = 0.05
 shader_parameter/grid_dim = 4.0
 shader_parameter/dimensions = Vector3(50, 50, 50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dilhk"]
-albedo_color = Color(0.2782046, 0.4242597, 0.52695256, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mav1t"]
+albedo_color = Color(0.78322023, 0.52710503, 0.17876545, 1)
 
 [node name="Level_00" type="Node3D" unique_id=1363919234 node_paths=PackedStringArray("PlayerSpawnPosition", "EndLevelZone")]
 script = ExtResource("1_0rc55")
@@ -42,7 +42,7 @@ size = Vector3(50, 50, 50)
 material = SubResource("ShaderMaterial_dilhk")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="LevelContainer" unique_id=1792308852]
-material_override = SubResource("StandardMaterial3D_dilhk")
+material_override = SubResource("StandardMaterial3D_mav1t")
 use_collision = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=1676780920]
@@ -50,8 +50,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.6635132, 0)
 size = Vector3(5, 0.32702637, 4)
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=138254693]
-transform = Transform3D(1, 0, 0, 0, 0.8660253, -0.49999997, 0, 0.49999997, 0.8660253, 1, -6.1383867, 10.938974)
-size = Vector3(5, 0.32702637, 21)
+transform = Transform3D(1, 0, 0, 0, 0.8660253, -0.49999997, 0, 0.49999997, 0.8660253, 1, -6.6383867, 11.804999)
+size = Vector3(5, 0.32702637, 19)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="LevelContainer/CSGCombiner3D" unique_id=875597412]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -0.6635132, 0)

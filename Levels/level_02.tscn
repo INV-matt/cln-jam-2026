@@ -58,7 +58,7 @@ size = Vector3(51.999, 1.1416016, 66)
 albedo_color = Color(0.81960785, 0.23529412, 0.05882353, 1)
 emission_enabled = true
 emission = Color(0.81960785, 0.23529412, 0.05882353, 1)
-emission_energy_multiplier = 2.5
+emission_energy_multiplier = 1.2
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i2tgm"]
 
