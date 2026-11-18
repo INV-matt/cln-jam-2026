@@ -26,4 +26,4 @@ func _on_entered(body: Node3D) -> void:
 
 func _on_timer_timeout() -> void:
   $Mesh.mesh.material.albedo_color = Color(1, 0, 0, 0.25)
-  print("Changed Color")
+  #print("Changed Color")

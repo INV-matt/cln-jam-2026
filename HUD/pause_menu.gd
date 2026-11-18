@@ -19,6 +19,5 @@ func _on_restart_pressed() -> void:
   hide()
 
 func _on_quit_pressed() -> void:
-  print("QUIT")
   Signals.open_level_selector.emit()
   hide()

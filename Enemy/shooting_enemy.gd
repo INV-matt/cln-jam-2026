@@ -37,10 +37,11 @@ func _process(delta: float) -> void:
 
 
 func _handle_idle(delta: float) -> void:
-  $WorldModel/CSGMesh3D.material.albedo_color = Color(1, 0, 0, 1) # FOR DEBUGGING
+  pass
+  #$WorldModel/CSGMesh3D.material.albedo_color = Color(1, 0, 0, 1) # FOR DEBUGGING
 
 func _handle_following(delta: float) -> void:
-  $WorldModel/CSGMesh3D.material.albedo_color = Color(0, 1, 0, 1) # FOR DEBUGGING
+  #$WorldModel/CSGMesh3D.material.albedo_color = Color(0, 1, 0, 1) # FOR DEBUGGING
   var dir = (target.global_position - global_position).normalized()
   var target_yaw = atan2(dir.x, dir.z)
   %TurretHeadYawPivot.global_rotation.y = rotate_toward(%TurretHeadYawPivot.global_rotation.y, target_yaw, ROT_SPEED * delta)

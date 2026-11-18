@@ -202,7 +202,7 @@ func handle_gun_start_lvl(gun: PackedScene, bullets: int) -> void:
   currentGun.remainingBullets = bullets
   currentGun.show()
 
-  print(currentGun.remainingBullets)
+  # print(currentGun.remainingBullets)
   
   selected_weapon = 1
 
@@ -225,5 +225,5 @@ func pickup_bullet(bullets: int) -> bool:
   currentGun.remainingBullets += bullets
   %AudioPlayer.stream = _pickup_sound
   $AudioPlayer.play()
-  print(currentGun.remainingBullets)
+  # print(currentGun.remainingBullets)
   return true

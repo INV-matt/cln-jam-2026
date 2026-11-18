@@ -26,8 +26,6 @@ func _ready() -> void:
 
   mainMenu.show()
 
-  #Signals.level_start.emit(3) # TODO
-
 
 func _on_level_start(id: int) -> void:
   if id >= LevelList.size(): return
@@ -42,7 +40,7 @@ func _on_level_start(id: int) -> void:
   Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
   GM.isInLevel = true
  
-  print("Initializing level %d" % id)
+  #print("Initializing level %d" % id)
   if CurrentLevel: CurrentLevel.queue_free()
   CurrentLevel = t as BaseLevel
   CurrentLevelId = id
@@ -63,7 +61,7 @@ func _on_level_start(id: int) -> void:
   Globals.PL.rotation = CurrentLevel.PlayerSpawnPosition.rotation
   Globals.PL.handle_knife_start_lvl() # Knife should be set up before gun
   Globals.PL.handle_gun_start_lvl(CurrentLevel.playerGun, CurrentLevel.InitialBullets)
-  print("MAIN: handle_gun_start_lvl")
+  #print("MAIN: handle_gun_start_lvl")
 
   hud.show()
   hud.showEnemies(CurrentLevel.showEnemies)
@@ -78,6 +76,6 @@ func _on_level_completed() -> void:
 
   GM.isInLevel = false
 
-  print("Clearing current level")
+  #print("Clearing current level")
   if CurrentLevel: CurrentLevel.queue_free()
   if Globals.PL: Globals.PL.queue_free()
